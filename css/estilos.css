@@ -109,6 +109,10 @@ nav{
     font-size: 4vw;
   }
   
+  .bx-wrapper{
+    margin-top: 5vw;
+    background-color: #800040;
+  }
 
   @media all and (min-width: 700px) {
     nav{

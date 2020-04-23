@@ -45,7 +45,9 @@ if(isset($_POST["btPlato"])){
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 
-			
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>	
 	
 		<script>
 			$(document).ready(function () {
@@ -77,6 +79,13 @@ if(isset($_POST["btPlato"])){
 		});
 		</script>
 
+
+		<script>
+			$(document).ready(function(){
+			$('.slider').bxSlider();
+			});
+		</script>
+
 	</head>
 	<body>
 		
@@ -104,7 +113,10 @@ if(isset($_POST["btPlato"])){
 			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
-		
+		<div class="slider">
+			<div><img src="img/slider.jpg"></img></div>
+			<div><img src="img/slider2.jpg"></img></div>
+  		</div>
 
 		<main>
 
