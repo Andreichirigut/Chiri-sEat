@@ -1,0 +1,124 @@
+*{
+  margin: 0;
+}
+#head{
+  display: flex;
+  align-self: center;
+  background-color: black;
+  height: 10vw;
+}
+#head h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  align-self: center;
+}
+#head label span{
+  color: white;
+  font-size: 5vw;
+}
+#head label{
+  align-self: center;
+  margin-left: 1vw;
+}
+
+
+label{
+  cursor:pointer;
+}
+
+nav{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50vw;
+  transform: translate(-350px);
+  position: absolute;
+  }
+  li{
+  padding: 10%;
+  text-align: center;
+  }
+  nav a{
+  text-decoration: none;
+  color: white;
+  font-size: 4vw;
+  
+  }
+
+
+  section h1{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 3%;
+  }
+  
+
+  section{
+    padding: 3%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 5%;
+  }
+
+  img{
+    width: 100%;
+    margin-bottom: 3%;
+    border: 1px solid black;
+  }
+  
+
+  body{
+    background-color: #800040;
+  }
+
+  button{
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
+
+  #receta{
+    margin-top: 3%;
+  }
+
+  @media all and (min-width: 700px) {
+    nav{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    nav a{
+      font-size: 3vw;
+    }
+    #head{
+      height: 8vw;
+    }
+    #head label span{
+      font-size: 4vw;
+    }
+    section{
+      flex-direction: row;
+    }
+    
+    img{
+      width: 100%;
+      border-radius: 1vw;
+    }
+    #foto{
+      width: 45%;
+    }
+    #descripcion{
+      width: 50%;
+      margin-left: 3%;
+    }
+    h2{
+      margin-bottom: 2vw;
+    }
+  }
+

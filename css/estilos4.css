@@ -1,0 +1,181 @@
+*{
+  margin: 0;
+}
+#head{
+  display: flex;
+  align-self: center;
+  background-color: black;
+  height: 10vw;
+}
+#head h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  align-self: center;
+}
+#head label span{
+  color: white;
+  font-size: 5vw;
+}
+#head label{
+  align-self: center;
+  margin-left: 1vw;
+}
+
+
+label{
+  cursor:pointer;
+}
+
+#nav1{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50vw;
+  transform: translate(-350px);
+  position: absolute;
+  }
+#nav2{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50vw;
+  transform: translate(750px);
+  position: absolute;
+  }
+  li{
+  padding: 10%;
+  text-align: center;
+  }
+  #nav1 a{
+  text-decoration: none;
+  color: white;
+  font-size: 4vw;
+  
+  }
+  #nav2 a{
+    text-decoration: none;
+    color: white;
+    font-size: 4vw;
+    
+    }
+
+
+  main{
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+
+  section{
+    padding:3%;
+    background-color: white;
+    margin-bottom:3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+  }
+
+  section #text p{
+    display: none;
+  }
+
+  section #img{
+    width: 100%;
+    order:1;
+  }
+  img{
+    width: 100%;
+    border: 1px solid black;
+  }
+  section #text{
+    order:0;
+    margin-bottom:3%;
+    text-align:center;
+    width:100%;
+  }
+  main{
+    width: 80%;
+    margin-left: 8%;
+  }
+
+  body{
+    background-color: #800040;
+  }
+
+  button{
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
+
+ 
+  #nav1 button{
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 4vw;
+  }
+  #nav2 button{
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 4vw;
+  }
+
+  @media all and (min-width: 700px) {
+    #nav1{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    #nav2{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    #nav1 a{
+      font-size: 3vw;
+    }
+    #nav2 a{
+      font-size: 3vw;
+    }
+    #head{
+      height: 8vw;
+    }
+    #head label span{
+      font-size: 4vw;
+    }
+    section #text p{
+      display: inline;
+    }
+    section #img{
+      width: 50%;
+      order:1;
+    }
+    section #text{
+      width: 50%;
+      order:1;
+    }
+    img{
+      width: 100%;
+      border-radius: 1vw;
+    }
+    h2{
+      margin-bottom: 2vw;
+    }
+    #nav1 button{
+      font-size: 3vw;
+    }
+    #nav2 button{
+      font-size: 3vw;
+    }
+  }
+

@@ -1,0 +1,188 @@
+*{
+  margin: 0;
+}
+#head{
+  display: flex;
+  align-self: center;
+  background-color: black;
+  height: 10vw;
+}
+#head h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  align-self: center;
+}
+#head label span{
+  color: white;
+  font-size: 5vw;
+}
+#head label{
+  align-self: center;
+  margin-left: 1vw;
+}
+
+
+label{
+  cursor:pointer;
+}
+
+nav{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50vw;
+  transform: translate(-350px);
+  position: absolute;
+  }
+  li{
+  padding: 10%;
+  text-align: center;
+  }
+  nav a{
+  text-decoration: none;
+  color: white;
+  font-size: 4vw;
+  
+  }
+
+
+  main{
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+
+  section{
+    padding:3%;
+    background-color: white;
+    margin-bottom:3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+  }
+
+  section #text p{
+    display: none;
+  }
+
+  section #img{
+    width: 100%;
+    order:1;
+  }
+  img{
+    width: 100%;
+    border: 1px solid black;
+  }
+  section #text{
+    order:0;
+    margin-bottom:3%;
+    text-align:center;
+    width:100%;
+  }
+  main{
+    width: 80%;
+    margin-left: 8%;
+  }
+
+  body{
+    background-color: #800040;
+  }
+
+  button{
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+  }
+
+ 
+  nav button{
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 4vw;
+  }
+  
+
+  @media all and (min-width: 700px) {
+    nav{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    nav a{
+      font-size: 3vw;
+    }
+    #head{
+      height: 8vw;
+    }
+    #head label span{
+      font-size: 4vw;
+    }
+    section #text p{
+      display: inline;
+    }
+    section #img{
+      width: 50%;
+      order:1;
+    }
+    section #text{
+      width: 50%;
+      order:1;
+    }
+    img{
+      width: 100%;
+      border-radius: 1vw;
+    }
+    h2{
+      margin-bottom: 2vw;
+    }
+    nav button{
+      font-size: 3vw;
+    }
+  }
+
+  @media all and (min-width: 1000px) {
+    #head{
+      height: 5vw;
+    }
+    nav{
+      background-color: inherit;
+      transform: translate(0px);
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+    }
+    nav a{
+      font-size: 1.5vw;
+    }
+    nav li{
+      padding: 1vw;
+    }
+    label{
+      display: none;
+    }
+    main{
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 0;
+    }
+    section{
+      width: 40%;
+      margin-left: 3%;
+      margin-top: 3%;
+      margin-bottom: 0%;
+    }
+     #img{
+       align-self: center;
+     }
+     
+  }
+

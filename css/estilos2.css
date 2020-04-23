@@ -1,0 +1,124 @@
+*{
+  margin: 0;
+}
+#head{
+  display: flex;
+  align-self: center;
+  background-color: black;
+  height: 10vw;
+}
+#head h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  align-self: center;
+}
+#head label span{
+  color: white;
+  font-size: 5vw;
+}
+#head label{
+  align-self: center;
+  margin-left: 1vw;
+}
+
+nav{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50%;
+  transform: translate(-350px);
+  position: absolute;
+  }
+  li{
+  padding: 10%;
+  text-align: center;
+  }
+  nav a{
+  text-decoration: none;
+  color: white;
+  font-size: 4vw;
+  
+  }
+
+  label{
+    cursor: pointer;
+  }
+  button{
+    cursor: pointer;
+  }
+  
+
+  body{
+    background-color: #800040;
+  }
+  #login{
+    background-color: white;
+    width: 80%;
+    height: 50vw;
+    padding: 3%;
+    margin-left: 7%;
+    margin-top: 5%;
+    border-radius: 3vw;
+  }
+  h1{
+    text-align: center;
+  }
+  #campos{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  label{
+    align-self: center;
+    font-size: 3vw;
+  }
+  #campos input{
+    width: 60%;
+    height: 3vw;
+    align-self: center;
+    margin-bottom: 5%;
+  }
+  #botones{
+    display: flex;
+    flex-direction: column;
+  }
+  button{
+    height: 5vw;
+    width: 50%;
+    align-self: center;
+    margin-bottom: 1%;
+  }
+  #botones span{
+    font-size: 7vw;
+    color: #800040;
+  }
+  #boton1{
+    width: 10%;
+    height: 8vw;
+    background-color: inherit;
+    border: none;
+  }
+  #botonReg{
+    background-color: inherit;
+    border:  2px solid #800040;
+  }
+  @media all and (min-width: 700px) {
+    nav{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    nav a{
+      font-size: 3vw;
+    }
+    #head{
+      height: 8vw;
+    }
+    #head label span{
+      font-size: 4vw;
+    }
+
+  }
