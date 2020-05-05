@@ -104,6 +104,7 @@ nav{
     }
     section{
       flex-direction: row;
+      flex-wrap: wrap;
     }
     
     img{
@@ -114,6 +115,7 @@ nav{
       width: 45%;
     }
     #descripcion{
+      align-self: center;
       width: 50%;
       margin-left: 3%;
     }
@@ -121,4 +123,32 @@ nav{
       margin-bottom: 2vw;
     }
   }
-
+  @media all and (min-width: 1000px) {
+    #head{
+      height: 5vw;
+    }
+    nav{
+      background-color: inherit;
+      transform: translate(0px);
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      border-radius: 0%;
+    }
+    nav a{
+      font-size: 1.5vw;
+    }
+    nav li{
+      padding: 1vw;
+    }
+    label{
+      display: none;
+    }
+    #foto{
+      width: 45%;
+    }
+    #descripcion{
+      height: 5vw;
+    }
+    
+  }
