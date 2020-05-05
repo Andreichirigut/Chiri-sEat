@@ -30,6 +30,7 @@ nav{
   width: 50%;
   transform: translate(-350px);
   position: absolute;
+  z-index: 1;
   }
   li{
   padding: 10%;
@@ -121,4 +122,50 @@ nav{
       font-size: 4vw;
     }
 
+  }
+
+  @media all and (min-width: 1000px) {
+    #head{
+      height: 5vw;
+    }
+    nav{
+      background-color: inherit;
+      transform: translate(0px);
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      border-radius: 0%;
+    }
+    nav a{
+      font-size: 1.5vw;
+    }
+    nav li{
+      padding: 1vw;
+    }
+    #head label{
+      display: none;
+    }
+    
+    #login{
+      width: 50%;
+      margin-left: 21%;
+      height: 15%;
+    }
+    #login h1{
+      font-size: 2vw;
+    }
+    label{
+      font-size: 1.5vw;
+    }
+    #campos input{
+      width: 80%;
+      height: 2vw;
+    }
+    #botones span{
+      font-size: 4.5vw;
+      color: #800040;
+    }
+    #botonReg{
+      height: 3vw;
+    }
   }

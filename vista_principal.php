@@ -116,6 +116,7 @@ if(isset($_POST["btPlato"])){
 		<div class="slider">
 			<div><img src="img/slider.jpg"></img></div>
 			<div><img src="img/slider2.jpg"></img></div>
+			<div><img src="img/slider3.jpg"></img></div>
   		</div>
 
 		<main>

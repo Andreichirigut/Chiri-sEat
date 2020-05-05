@@ -35,6 +35,7 @@ nav{
   width: 50vw;
   transform: translate(-350px);
   position: absolute;
+  z-index: 1;
   }
   li{
   padding: 10%;
@@ -110,8 +111,7 @@ nav{
   }
   
   .bx-wrapper{
-    margin-top: 5vw;
-    background-color: #800040;
+    color: #800040;
   }
 
   @media all and (min-width: 700px) {
@@ -162,6 +162,7 @@ nav{
       flex-direction: row;
       width: 100%;
       justify-content: space-between;
+      border-radius: 0%;
     }
     nav a{
       font-size: 1.5vw;

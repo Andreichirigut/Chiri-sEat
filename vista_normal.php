@@ -33,7 +33,9 @@
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 
-		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>	
 	
 	<script>
 			$(document).ready(function () {
@@ -75,11 +77,11 @@
 					}
 				}else{
 					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=950px' });
+						$('#nav2').animate({ 'left': '-=1000px' });
 
 						desplegado = true;
 					} else {
-						$('#nav2').animate({ 'left': '+=950px' });
+						$('#nav2').animate({ 'left': '+=1000px' });
 
 						desplegado = false;
 					}
@@ -88,6 +90,13 @@
 			
 		});
 		</script>
+
+		<script>
+			$(document).ready(function(){
+			$('.slider').bxSlider();
+			});
+		</script>
+
 		<title>Ejer2</title>
 		
 
@@ -124,6 +133,7 @@
 			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
+
 		<nav id="nav2">
 			<li>
 			<form action="index.php" method="post">
@@ -134,6 +144,12 @@
 			<li><a id="comunidad" href="#"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
 			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
+
+		<div class="slider">
+			<div><img src="img/slider.jpg"></img></div>
+			<div><img src="img/slider2.jpg"></img></div>
+			<div><img src="img/slider3.jpg"></img></div>
+  		</div>
 
 		<main>
 
