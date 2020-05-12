@@ -108,7 +108,7 @@
 		</label>
 			<h1>Chiri'sEat</h1>
 		<label for="hamburguesa2" id="ham2">
-			<span>&#x2630;</span>
+			<span><i class="fas fa-user"></i></span>
 		</label>	
 		
 		<?php
@@ -123,26 +123,25 @@
 		</div>
 
 		<nav id="nav1">
+			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
+			<li><a id="comunidad" href="#"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
+			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 			<li>
 			<form action="index.php" method="post">
 				<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
 			</form>
 			</li>
-			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
 
 		<nav id="nav2">
+			<li><a id="platos" href="#"><i class="fas fa-users"></i><span> Subir Platos</span></a>
+			<li><a id="misPlatos" href="#"><i class="fas fa-utensils"></i><span> Mis platos</span></a>
 			<li>
 			<form action="index.php" method="post">
 				<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
 			</form>
 			</li>
-			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
 		<div class="slider">
