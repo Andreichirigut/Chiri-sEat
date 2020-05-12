@@ -107,6 +107,18 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 							echo "<p id='foto'><img src='img/".$obj->plato->foto."'></img></p>";
 							echo "<p id='descripcion'><strong>".$obj->plato->descripcion."</strong></p>";
 							echo "<p id='receta'>".$obj->plato->receta."</p>";
+							echo "<h3>Comentarios</h3>";
+								$obj2=consumir_servicio_REST($ruta."comentarios", "GET");
+								if(isset($obj2->mensaje_error)){
+									die($obj2->mensaje_error);
+								}elseif (isset($obj2->mensaje)) {
+									echo "<p>".$obj2->mensaje."</p>";
+								}else{	
+									foreach($obj2->comentarios as $fila){
+										echo "<p id='comentario'>".$fila->comentario."</p>";
+									}
+									
+								}
 
 						echo "<section>";
 

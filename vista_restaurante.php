@@ -18,22 +18,119 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
+		<title>Chiri'sEat</title>
 		<meta charset="UTF-8"/>
-		<title>Ejer2</title>
-		<style>
-			button{border:none; color:black;background-color:white;}
-			button:hover{color:blue;cursor:pointer;}
-		</style>
+		<link rel="stylesheet" href="css/estilos5.css">
+		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
+		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>	
+	
+		<script>
+			$(document).ready(function () {
+			var desplegado = false;
+			$('label').click(function () {
+				if ($(window).width() < 700) {
+					if (desplegado == false) {
+						$('nav').animate({ 'left': '+=350px' });
+
+						desplegado = true;
+					} else {
+						$('nav').animate({ 'left': '-=350px' });
+
+						desplegado = false;
+					}
+				}else{
+					if (desplegado == false) {
+						$('nav').animate({ 'left': '+=550px' });
+
+						desplegado = true;
+					} else {
+						$('nav').animate({ 'left': '-=550px' });
+
+						desplegado = false;
+					}
+				}
+			});
+			
+		});
+		</script>
+
+
+		<script>
+			$(document).ready(function(){
+			$('.slider').bxSlider();
+			});
+		</script>
 
 	</head>
 	<body>
 		
-	<form action="index.php" method="post">
-			<button type="submit" name="volver">Volver</button>
-	</form>
-			
+		<div id="head">
+		<label for="hamburguesa">
+			<span>&#x2630;</span>
+		</label>
+			<h1>Chiri'sEat</h1>
+		
+		<?php
+			/*if(isset($_SESSION["restringida"])){
+				echo "<p> ¡¡¡ Está usted tratando de acceder a una zona restringida. Por favor logueese o registrese. !!! </p>";
+			}
+			if(isset($_SESSION["tiempo"])){
+				echo "<p> ¡¡¡ Tiempo de sesión sobrepasado. Por favor logueese o registrese. !!! </p>";
+			}
+			session_unset();*/	
+		?>
+		</div>
 
+		<nav>
+			<li><a href="login.php"><i class="fas fa-user"></i><span> Iniciar sesión</span></a></li>
+			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
+			<li><a href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
+			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
+		</nav>
+
+		<div class="slider">
+			<div><img src="img/slider.jpg"></img></div>
+			<div><img src="img/slider2.jpg"></img></div>
+			<div><img src="img/slider3.jpg"></img></div>
+  		</div>
+
+		<main>
+
+		<?php 
+						$obj=consumir_servicio_REST($ruta."platos", "GET");
+						if (isset($obj->mensaje_error)) {
+							die($obj->mensaje_error);
+						}else {
+							foreach($obj->platos as $fila){
+								echo "<section>";
+									echo "<div id='img'>";
+										echo "<img src='img/".$fila->foto."'></img>";
+									echo "</div>";
+
+									echo "<div id='text'>";
+										echo "<form action='index.php' method='post'>";
+										echo "<button type='submit' value='".$fila->id_plato."' name='btPlato'><h2>".$fila->nombre."</h2></button>";
+										echo "<p>".$fila->descripcion."</p>";
+										echo "</form>";
+									echo "</div>";
+
+								echo "</section>";	
+							}
+						}
+		?>
+
+			
+			
+		</main>
+
+		<footer>
+
+		</footer>
 	</body>
 
 </html>

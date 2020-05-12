@@ -17,10 +17,15 @@ $app->contentType('application/json; charset=utf-8');
 $app->get('/platos', function () {
 	echo json_encode(obtener_platos(), JSON_FORCE_OBJECT);
 });
+$app->get('/comentarios', function () {
+	echo json_encode(obtener_comentarios(), JSON_FORCE_OBJECT);
+});
 
 $app->get('/plato/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_plato($columna, $valor), JSON_FORCE_OBJECT);
 });
+
+
 
 $app->post('/login', function () {
 	echo json_encode(login_usuario($_POST["usuario"], $_POST["clave"]), JSON_FORCE_OBJECT);
