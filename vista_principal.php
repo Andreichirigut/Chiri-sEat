@@ -149,7 +149,22 @@ if(isset($_POST["btPlato"])){
 		</main>
 
 		<footer>
+			
+				<div id="footer1">
+						<h1>Chiri'sEat</h1>
+						<p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final</p>
+						<p><i class="fab fa-facebook-square"></i><i class="fab fa-instagram-square"></i><i class="fab fa-twitter-square"></i></p>
+				</div>
 
+				<div id="footer2">
+						<h3>Concactanos</h3>
+						
+						<p>prueba@gmail.com</p>
+						<p>666999666</p>
+						<p>999666999</p>
+						
+				</div>		
+							
 		</footer>
 	</body>
 </html>

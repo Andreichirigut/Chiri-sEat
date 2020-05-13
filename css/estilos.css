@@ -114,7 +114,35 @@ nav{
     color: #800040;
   }
 
-  
+  footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 3vw;
+  }
+  #footer1{
+    margin-bottom: 3vw;
+  }
+  #footer1 i{
+    margin: 2vw;
+    color: #800040;
+  }
+  #footer1 i:hover{
+    cursor: pointer;
+  }
+  #footer2 p{
+    margin: 2vw;
+    width: 50%;
+    margin-left: 25%;
+  }
+  #footer2 h3{
+    margin-bottom: 1vw;
+  }
+  #footer2 p:hover{
+    cursor: pointer;
+  } 
 
   @media all and (min-width: 700px) {
     nav{
@@ -190,6 +218,18 @@ nav{
      #img{
        align-self: center;
      }
-     
+     footer{
+       margin-top: 5vw;
+       flex-direction: row;
+     }
+     #footer1 h1{
+       margin-bottom: 1vw;
+     }
+     #footer1{
+       width: 50%;
+     }
+     #footer2{
+       width: 50%;
+     }
   }
 

@@ -124,7 +124,7 @@
 
 		<nav id="nav1">
 			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
+			<li><a href="vista_restaurante.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
 			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 			<li>
 			<form action="index.php" method="post">
@@ -180,7 +180,20 @@
 		</main>
 
 		<footer>
+				<div id="footer1">
+						<h1>Chiri'sEat</h1>
+						<p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final</p>
+						<p><i class="fab fa-facebook-square"></i><i class="fab fa-instagram-square"></i><i class="fab fa-twitter-square"></i></p>
+				</div>
 
+				<div id="footer2">
+						<h3>Concactanos</h3>
+						
+						<p>prueba@gmail.com</p>
+						<p>666999666</p>
+						<p>999666999</p>
+						
+				</div>
 		</footer>
 				
 
