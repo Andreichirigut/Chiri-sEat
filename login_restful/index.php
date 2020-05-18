@@ -31,8 +31,8 @@ $app->post('/login', function () {
 	echo json_encode(login_usuario($_POST["usuario"], $_POST["clave"]), JSON_FORCE_OBJECT);
 });
 
-$app->post('/insertarLibro', function () {
-	echo json_encode(insertar_libro($_POST["titulo"],$_POST["autor"],$_POST["descripcion"],$_POST["precio"]), JSON_FORCE_OBJECT);
+$app->post('/insertarUsuario', function () {
+	echo json_encode(insertar_usuario($_POST["usuario"],$_POST["clave"],$_POST["email"],$_POST["tipo"]), JSON_FORCE_OBJECT);
 });
 
 $app->put('/actualizarLibro/:referencia', function ($refrencia) use($app) {

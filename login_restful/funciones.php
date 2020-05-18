@@ -106,13 +106,13 @@
         }
     }
 
-    function insertar_libro($titulo,$autor,$descripcion,$precio){
+    function insertar_usuario($usuario,$clave,$email,$tipo){
         $con=conectar();
         if(!$con){
             return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
         }else{
             mysqli_set_charset($con, "utf8");
-            $consulta="insert into libros(titulo, autor, descripcion, precio) VALUES('".$titulo."', '".$autor."', '".$descripcion."', '".$precio."')";
+            $consulta="insert into usuarios(usuario, clave, email, tipo) VALUES('".$usuario."', '".md5($clave)."', '".$email."', '".$tipo."')";
             $resultado=mysqli_query($con, $consulta);
             if(!$resultado){
                 $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
@@ -120,7 +120,7 @@
                 return array("mensaje_error"=>$mensaje);
             }else{
                 mysqli_close($con);
-                return array("mensaje"=>"Se ha insertado el libro : ".$titulo);
+                return array("mensaje"=>"Se ha insertado el usuario : ".$titulo);
                 
                 
         

@@ -57,7 +57,7 @@ nav{
   #login{
     background-color: white;
     width: 80%;
-    height: 100vw;
+    height: 80vw;
     padding: 3%;
     margin-left: 7%;
     margin-top: 5%;
@@ -143,6 +143,28 @@ nav{
     font-size: 2vw;
     text-align: center;    
   }
+
+
+  #tipo {
+    display: block;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: #444;
+    margin-bottom: 3vw;
+   }
+   #tipo:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px #800040;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222; 
+    outline: none;
+   }
+   #tipo option {
+    font-weight:normal;
+    color: #800040;
+    
+   }
+
 
   @media all and (min-width: 700px) {
     nav{

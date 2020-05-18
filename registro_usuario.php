@@ -1,28 +1,43 @@
 <?php
-if(isset($_POST["btnEntrar"])){
+
+$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
+
+if(isset($_POST["btnRegistro"])){
    
     
     	if($_POST["usuario"]=="")
-           $errorUsuario=" * Campo Vacío * ";
-        
+           $errorUsuario=" * Campo Vacío * "; 
     
-    	if($_POST["clave"]=="")
-            $errorClave=" * Campo Vacío * ";
-    
+    	if($_POST["clave1"]=="")
+			$errorClave1=" * Campo Vacío * ";
 
-	if(!isset($errorUsuario) && !isset($errorClave)){
-    		if($datos_usu_log=obtener_usuario($_POST["usuario"],MD5($_POST["clave"]))){
-				$_SESSION["usuario"]=$_POST["usuario"];
-				$_SESSION["clave"]=MD5($_POST["clave"]);
-				$_SESSION["ultimo_acceso"]=time();
-				header("Location: index.php");
-				exit;
-    		}
-    		else
-            		$errorUsuario=" * Login incorrecto: Vuelva a intentarlo * ";
- 
-	}
+		if($_POST["clave2"]=="")
+			$errorClave2=" * Campo Vacío * ";	
+			
+		if($_POST["email"]=="")
+            $errorEmail=" * Campo Vacío * ";
+	
+		if($_POST["clave1"]!=$_POST["clave2"]){
+			$errorClave=" * La clave no coincide * ";
+		}	
+
+	if(!isset($errorUsuario) && !isset($errorClave1) && !isset($errorClave2) && !isset($errorEmail) && !isset($errorClave)){
+
+			$datos_usuario["usuario"]=$_POST["usuario"];
+			$datos_usuario["clave"]=$_POST["clave1"];
+			$datos_usuario["email"]=$_POST["email"];
+			$datos_usuario["tipo"]=$_POST["tipo"];
+			$obj=consumir_servicio_REST($ruta."insertarUsuario", "POST", $datos_usuario);
+			if(isset($obj->mensaje_error)){
+				die($obj->mensaje_error);
+			}else{
+				echo "<form method='post' action='index.php'>";
+				echo "<p>".$obj->mensaje."</p>";
+				echo "<input type='submit' value='Atras'/>";
+				echo "</form>";
+			}
        
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -124,27 +139,28 @@ if(isset($_POST["btnEntrar"])){
 					
 			
 				
-					<label for="clave">Contraseña:</label>
-					<input type="password" id="clave" name="clave" value=""/>
+					<label for="clave1">Contraseña:</label>
+					<input type="password" id="clave1" name="clave1" value=""/>
 					
 					<?php
-						if(isset($errorClave))
-							echo $errorClave;
+						if(isset($errorClave1))
+							echo $errorClave1;
 
 						
 					?>
 
-					<label for="clave">Repita la contraseña:</label>
-					<input type="password" id="clave" name="clave" value=""/>
+					<label for="clave2">Repita la contraseña:</label>
+					<input type="password" id="clave2" name="clave2" value=""/>
 					
 					<?php
+						if(isset($errorClave2))
+							echo $errorClave2;
+
 						if(isset($errorClave))
 							echo $errorClave;
-
-						
 					?>
 
-					<label for="clave">Correo:</label>
+					<label for="email">Correo:</label>
 					<input type="email" id="email" name="email" value=""/>
 					
 					<?php
@@ -153,12 +169,18 @@ if(isset($_POST["btnEntrar"])){
 
 						
 					?>
+
+				<label for="tipo">Tipo:</label>
+				<select id="tipo" name="tipo">
+					<option value="normal">Normal</option>
+					<option value="restaurante">Restaurante</option>
+				</select>
 							
 				
 		</div>
 		<div id="botones">
-			<button type="submit" name="btnEntrar" id="boton1"><span><i class="fas fa-arrow-circle-right"></span></i></button>
-			<button type="submit" name="btnRegistrar" id="botonReg" formaction="login.php">Iniciar Sesion</button>
+			<button type="submit" name="btnRegistro" id="boton1"><span><i class="fas fa-arrow-circle-right"></span></i></button>
+			<button type="submit" name="btnInicarSesion" id="botonReg" formaction="login.php">Iniciar Sesion</button>
 		</div>
 		</form>
 
