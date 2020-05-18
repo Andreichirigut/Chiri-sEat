@@ -30,7 +30,7 @@ if(isset($_POST["btnEntrar"])){
 	<head>
 		<title>Chiri'sEat</title>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="css/estilosLogin.css">
+		<link rel="stylesheet" href="css/estilosRegistro.css">
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 
@@ -109,7 +109,7 @@ if(isset($_POST["btnEntrar"])){
   		</div>
 
 		<div id="login">
-			<h1>Iniciar Sesion</h1>
+			<h1>Registrarse</h1>
 		<form method="post" action="index.php">
 			<div id="campos">
 				
@@ -133,12 +133,32 @@ if(isset($_POST["btnEntrar"])){
 
 						
 					?>
+
+					<label for="clave">Repita la contraseña:</label>
+					<input type="password" id="clave" name="clave" value=""/>
+					
+					<?php
+						if(isset($errorClave))
+							echo $errorClave;
+
+						
+					?>
+
+					<label for="clave">Correo:</label>
+					<input type="email" id="email" name="email" value=""/>
+					
+					<?php
+						if(isset($errorEmail))
+							echo $errorEmail;
+
+						
+					?>
 							
 				
 		</div>
 		<div id="botones">
 			<button type="submit" name="btnEntrar" id="boton1"><span><i class="fas fa-arrow-circle-right"></span></i></button>
-			<button type="submit" name="btnRegistrar" id="botonReg" formaction="registro_usuario.php">Registrarse</button>
+			<button type="submit" name="btnRegistrar" id="botonReg" formaction="login.php">Iniciar Sesion</button>
 		</div>
 		</form>
 

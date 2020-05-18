@@ -1,0 +1,222 @@
+*{
+  margin: 0;
+}
+#head{
+  display: flex;
+  align-self: center;
+  background-color: black;
+  height: 10vw;
+}
+#head h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  align-self: center;
+}
+#head label span{
+  color: white;
+  font-size: 5vw;
+}
+#head label{
+  align-self: center;
+  margin-left: 1vw;
+}
+
+nav{
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  background-color: black;
+  width: 50%;
+  transform: translate(-350px);
+  position: absolute;
+  z-index: 1;
+  }
+  li{
+  padding: 10%;
+  text-align: center;
+  }
+  nav a{
+  text-decoration: none;
+  color: white;
+  font-size: 4vw;
+  
+  }
+
+  label{
+    cursor: pointer;
+  }
+  button{
+    cursor: pointer;
+  }
+  
+
+  body{
+    background-color: #800040;
+  }
+  #login{
+    background-color: white;
+    width: 80%;
+    height: 50vw;
+    padding: 3%;
+    margin-left: 7%;
+    margin-top: 5%;
+    border-radius: 3vw;
+  }
+  h1{
+    text-align: center;
+  }
+  #campos{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  label{
+    align-self: center;
+    font-size: 3vw;
+  }
+  #campos input{
+    width: 60%;
+    height: 3vw;
+    align-self: center;
+    margin-bottom: 5%;
+  }
+  #botones{
+    display: flex;
+    flex-direction: column;
+  }
+  button{
+    height: 5vw;
+    width: 50%;
+    align-self: center;
+    margin-bottom: 1%;
+  }
+  #botones span{
+    font-size: 7vw;
+    color: #800040;
+  }
+  #boton1{
+    width: 10%;
+    height: 8vw;
+    background-color: inherit;
+    border: none;
+  }
+  #botonReg{
+    background-color: inherit;
+    border:  2px solid #800040;
+  }
+
+  footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 3vw;
+    margin-top: 3vw;
+  }
+  #footer1{
+    margin-bottom: 3vw;
+  }
+  #footer1 i{
+    margin: 2vw;
+    color: #800040;
+  }
+  #footer1 i:hover{
+    cursor: pointer;
+  }
+  #footer2 p{
+    margin: 2vw;
+    width: 50%;
+    margin-left: 25%;
+  }
+  #footer2 h3{
+    margin-bottom: 1vw;
+  }
+  #footer2 p:hover{
+    cursor: pointer;
+  } 
+
+  input{
+    font-family: fantasy;
+    font-size: 2vw;
+    text-align: center;    
+  }
+
+  @media all and (min-width: 700px) {
+    nav{
+      transform: translate(-550px);
+      width: 40vw;
+      border-radius: 1vw;
+    }
+    nav a{
+      font-size: 3vw;
+    }
+    #head{
+      height: 8vw;
+    }
+    #head label span{
+      font-size: 4vw;
+    }
+
+  }
+
+  @media all and (min-width: 1000px) {
+    #head{
+      height: 5vw;
+    }
+    nav{
+      background-color: inherit;
+      transform: translate(0px);
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      border-radius: 0%;
+    }
+    nav a{
+      font-size: 1.5vw;
+    }
+    nav li{
+      padding: 1vw;
+    }
+    #head label{
+      display: none;
+    }
+    
+    #login{
+      width: 50%;
+      margin-left: 21%;
+      height: 15%;
+    }
+    #login h1{
+      font-size: 2vw;
+    }
+    label{
+      font-size: 1.5vw;
+    }
+    #campos input{
+      width: 80%;
+      height: 2vw;
+    }
+    #botones span{
+      font-size: 4.5vw;
+      color: #800040;
+    }
+    #botonReg{
+      height: 3vw;
+    }
+    footer{
+      margin-top: 5vw;
+      flex-direction: row;
+    }
+    #footer1 h1{
+      margin-bottom: 1vw;
+    }
+    #footer1{
+      width: 50%;
+    }
+    #footer2{
+      width: 50%;
+    }
+  }

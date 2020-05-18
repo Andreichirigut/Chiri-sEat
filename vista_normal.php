@@ -29,7 +29,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="css/estilos4.css">
+		<link rel="stylesheet" href="css/estilosNormal.css">
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 

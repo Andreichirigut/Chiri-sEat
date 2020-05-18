@@ -57,7 +57,7 @@ nav{
   #login{
     background-color: white;
     width: 80%;
-    height: 50vw;
+    height: 100vw;
     padding: 3%;
     margin-left: 7%;
     margin-top: 5%;
@@ -114,6 +114,7 @@ nav{
     flex-direction: column;
     text-align: center;
     padding: 3vw;
+    margin-top: 3vw;
   }
   #footer1{
     margin-bottom: 3vw;
