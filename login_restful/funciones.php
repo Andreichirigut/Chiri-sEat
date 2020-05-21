@@ -77,6 +77,64 @@
         }
     }
 
+    function obtener_comentario($columna, $valor){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="select * from comentarios where ".$columna."='".$valor."'";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                if(mysqli_num_rows($resultado)>0){
+                    $fila=mysqli_fetch_assoc($resultado);
+                    mysqli_free_result($resultado);
+                    mysqli_close($con);
+                    return array("comentario"=>$fila);
+                }else{
+                    mysqli_free_result($resultado);
+                    mysqli_close($con);
+                    return array("mensaje"=>"No existe comentarios");
+                }
+                
+        
+            }
+        }
+    }
+
+    function obtener_usuario($columna, $valor){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="select * from usuarios where ".$columna."='".$valor."'";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                if(mysqli_num_rows($resultado)>0){
+                    $fila=mysqli_fetch_assoc($resultado);
+                    mysqli_free_result($resultado);
+                    mysqli_close($con);
+                    return array("usuario"=>$fila);
+                }else{
+                    mysqli_free_result($resultado);
+                    mysqli_close($con);
+                    return array("mensaje"=>"No existe el usuario");
+                }
+                
+        
+            }
+        }
+    }
+
     function login_usuario($usuario, $clave){
         $con=conectar();
         if(!$con){

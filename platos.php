@@ -107,16 +107,26 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 							echo "<p id='foto'><img src='img/".$obj->plato->foto."'></img></p>";
 							echo "<p id='descripcion'><strong>".$obj->plato->descripcion."</strong></p>";
 							echo "<p id='receta'>".$obj->plato->receta."</p>";
+
 							echo "<h3>Comentarios</h3>";
-								$obj2=consumir_servicio_REST($ruta."comentarios", "GET");
+							$obj2=consumir_servicio_REST($ruta."comentario/id_plato/".urlencode($_SESSION["plato"]), "GET");
 								if(isset($obj2->mensaje_error)){
 									die($obj2->mensaje_error);
 								}elseif (isset($obj2->mensaje)) {
 									echo "<p>".$obj2->mensaje."</p>";
 								}else{	
-									foreach($obj2->comentarios as $fila){
-										echo "<p id='comentario'>".$fila->comentario."</p>";
-									}
+									$id_usuario=$obj2->comentario->id_usuario;
+									$obj3=consumir_servicio_REST($ruta."usuario/id_usuario/".urlencode($id_usuario), "GET");
+									if(isset($obj3->mensaje_error)){
+										die($obj3->mensaje_error);
+									}elseif (isset($obj3->mensaje)) {
+										echo "<p>".$obj3->mensaje."</p>";
+									}else{	
+										echo "<p id='usuario'>".$obj3->usuario->usuario."</p>";
+									}	
+									
+									echo "<p id='comentario'>".$obj2->comentario->comentario."</p>";
+									
 									
 								}
 

@@ -24,8 +24,12 @@ $app->get('/comentarios', function () {
 $app->get('/plato/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_plato($columna, $valor), JSON_FORCE_OBJECT);
 });
-
-
+$app->get('/comentario/:columna/:valor', function ($columna, $valor) {
+	echo json_encode(obtener_comentario($columna, $valor), JSON_FORCE_OBJECT);
+});
+$app->get('/usuario/:columna/:valor', function ($columna, $valor) {
+	echo json_encode(obtener_usuario($columna, $valor), JSON_FORCE_OBJECT);
+});
 
 $app->post('/login', function () {
 	echo json_encode(login_usuario($_POST["usuario"], $_POST["clave"]), JSON_FORCE_OBJECT);

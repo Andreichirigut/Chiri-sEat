@@ -124,6 +124,12 @@ nav{
     cursor: pointer;
   } 
 
+  #usuario{
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+
   @media all and (min-width: 700px) {
     nav{
       transform: translate(-550px);

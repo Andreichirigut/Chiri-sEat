@@ -23,7 +23,9 @@ if(isset($_POST["btnRegistro"])){
 
 	if(!isset($errorUsuario) && !isset($errorClave1) && !isset($errorClave2) && !isset($errorEmail) && !isset($errorClave)){
 
-			$datos_usuario["usuario"]=$_POST["usuario"];
+		echo "entrooo";
+
+			/*$datos_usuario["usuario"]=$_POST["usuario"];
 			$datos_usuario["clave"]=$_POST["clave1"];
 			$datos_usuario["email"]=$_POST["email"];
 			$datos_usuario["tipo"]=$_POST["tipo"];
@@ -35,7 +37,7 @@ if(isset($_POST["btnRegistro"])){
 				echo "<p>".$obj->mensaje."</p>";
 				echo "<input type='submit' value='Atras'/>";
 				echo "</form>";
-			}
+			}^*/
        
 	}
 }
