@@ -87,7 +87,7 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 		<nav>
 			<li><a href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a></li>
 			<li><a href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a href="vista_restaurante.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
+			<li><a href="restaurantesSinSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
 			<li><a href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 		
@@ -128,7 +128,12 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 									echo "<p id='comentario'>".$obj2->comentario->comentario."</p>";
 									
 									
+									
 								}
+
+								echo "<button id='comentar'>Comentar</button>";
+
+								echo "<textarea name='textarea' rows='10' cols='500'></textarea>";
 
 						echo "</section>";
 

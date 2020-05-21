@@ -86,12 +86,19 @@
 		?>
 		</div>
 
-		<nav>
-			<li><a href="login.php"><i class="fas fa-user"></i><span> Iniciar sesión</span></a></li>
-			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
-		</nav>
+		
+			<nav>
+				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
+				<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
+				<li>
+				<form action="index.php" method="post">
+					<button type="submit" name="volver" id="volver"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></button>
+				</form>
+				</li>
+			</nav>
+		
+
+		
 
 		<div class="slider">
 			<div><img src="img/slider.jpg"></img></div>

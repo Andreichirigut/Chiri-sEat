@@ -98,7 +98,7 @@
                 }else{
                     mysqli_free_result($resultado);
                     mysqli_close($con);
-                    return array("mensaje"=>"No existe comentarios");
+                    return array("mensaje"=>"");
                 }
                 
         

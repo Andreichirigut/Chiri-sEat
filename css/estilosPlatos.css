@@ -129,7 +129,16 @@ nav{
     width: 100%;
     border-bottom: 1px solid black;
   }
-
+  #comentar{
+    border: 3px solid #800040;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 1vw;
+    margin-left: 25%;
+  }
+  textarea{
+    display: none;
+  }
   @media all and (min-width: 700px) {
     nav{
       transform: translate(-550px);

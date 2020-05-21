@@ -1,47 +1,27 @@
+
+
 <?php
 
-$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
-
-if(isset($_POST["btnEntrar"])){
-   
-    
-    	if($_POST["usuario"]=="")
-           $errorUsuario=" * Campo Vacío * ";
-        
-    
-    	if($_POST["clave"]=="")
-            $errorClave=" * Campo Vacío * ";
-    
-
-	if(!isset($errorUsuario) && !isset($errorClave)){
-    		if($datos_usu_log=obtener_usuario($_POST["usuario"],MD5($_POST["clave"]))){
-				$_SESSION["usuario"]=$_POST["usuario"];
-				$_SESSION["clave"]=MD5($_POST["clave"]);
-				$_SESSION["ultimo_acceso"]=time();
-				header("Location: index.php");
-				exit;
-    		}
-    		else
-            		$errorUsuario=" * Login incorrecto: Vuelva a intentarlo * ";
- 
-	}
-       
-}
-
-if(isset($_POST["btPlato"])){
-	$_SESSION["plato"]=$_POST["btPlato"];
-	header("Location: platosSinSesion.php");
-	exit;
 	
-}
 
+	$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
+
+	if(isset($_POST["volver"])){
+		session_unset();
+		header("Location:index.php");
+		exit;
+	}
+	
 ?>
+
+
+
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<title>Chiri'sEat</title>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="css/estilos.css">
+		<link rel="stylesheet" href="css/estilosRestaurante.css">
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 
@@ -106,12 +86,20 @@ if(isset($_POST["btPlato"])){
 		?>
 		</div>
 
-		<nav>
-			<li><a href="login.php"><i class="fas fa-user"></i><span> Iniciar sesión</span></a></li>
-			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a href="restaurantesSinSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
-		</nav>
+		
+			<nav>
+				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
+				<li><a href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
+				<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
+				<li>
+				<form action="index.php" method="post">
+					<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
+				</form>
+				</li>
+			</nav>
+		
+
+		
 
 		<div class="slider">
 			<div><img src="img/slider.jpg"></img></div>
@@ -122,7 +110,7 @@ if(isset($_POST["btPlato"])){
 		<main>
 
 		<?php 
-						$obj=consumir_servicio_REST($ruta."platos", "GET");
+						/*$obj=consumir_servicio_REST($ruta."platos", "GET");
 						if (isset($obj->mensaje_error)) {
 							die($obj->mensaje_error);
 						}else {
@@ -141,7 +129,7 @@ if(isset($_POST["btPlato"])){
 
 								echo "</section>";	
 							}
-						}
+						}*/
 		?>
 
 			
@@ -149,8 +137,7 @@ if(isset($_POST["btPlato"])){
 		</main>
 
 		<footer>
-			
-				<div id="footer1">
+			<div id="footer1">
 						<h1>Chiri'sEat</h1>
 						<p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final</p>
 						<p><i class="fab fa-facebook-square"></i><i class="fab fa-instagram-square"></i><i class="fab fa-twitter-square"></i></p>
@@ -163,8 +150,9 @@ if(isset($_POST["btPlato"])){
 						<p>666999666</p>
 						<p>999666999</p>
 						
-				</div>		
-							
+				</div>
 		</footer>
 	</body>
+
 </html>
+

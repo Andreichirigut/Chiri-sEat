@@ -16,7 +16,7 @@
 	
 	if(isset($_POST["btPlato"])){
 		$_SESSION["plato"]=$_POST["btPlato"];
-		header("Location: platos.php");
+		header("Location: platosConSesion.php");
 		exit;
 		
 	}	
@@ -124,11 +124,11 @@
 
 		<nav id="nav1">
 			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a href="vista_restaurante.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
+			<li><a href="restaurantesConSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
 			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 			<li>
 			<form action="index.php" method="post">
-				<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
+				<button type="submit" name="volver" id="volver"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></button>
 			</form>
 			</li>
 		</nav>
