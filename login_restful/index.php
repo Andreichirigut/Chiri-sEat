@@ -45,15 +45,18 @@ $app->post('/login', function () {
 $app->post('/insertarUsuario', function () {
 	echo json_encode(insertar_usuario($_POST["usuario"],$_POST["clave"],$_POST["email"],$_POST["tipo"]), JSON_FORCE_OBJECT);
 });
+$app->post('/insertarComentario', function () {
+	echo json_encode(insertar_comentario($_POST["usuario"],$_POST["plato"],$_POST["comentario"]), JSON_FORCE_OBJECT);
+});
 
-$app->put('/actualizarLibro/:referencia', function ($refrencia) use($app) {
+/*$app->put('/actualizarLibro/:referencia', function ($refrencia) use($app) {
 	$datos_libros=$app->request->put();
 	echo json_encode(actualizar_libro($referencia,$datos_libros["titulo"],$datos_libros["autor"],$datos_libros["descripcion"],$datos_libros["precio"]), JSON_FORCE_OBJECT);
 });
 
 $app->delete('/borrarLibro/:refrencia', function ($referencia){
 	echo json_encode(borrar_libro($referencia), JSON_FORCE_OBJECT);
-});
+});*/
 
 
 // Ejecutamos la aplicación creada

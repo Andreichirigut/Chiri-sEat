@@ -234,7 +234,29 @@
         }
     }
 
-    function borrar_libro($referencia){ 
+    function insertar_comentario($usuario,$plato,$comentario){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="insert into comentarios(id_usuario, id_plato, comentario) VALUES('".$usuario."', '".$plato."', '".$comentario."')";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                mysqli_close($con);
+                return array("mensaje"=>"Se ha insertado el comentario");
+                
+                
+        
+            }
+        }
+    }
+
+    /*function borrar_libro($referencia){ 
         $con=conectar();
         if(!$con){
             return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
@@ -272,7 +294,7 @@
                 return array("mensaje"=>"Se ha actualizado el libro con titulo : ".$titulo);
             }
         }
-    }
+    }*/
 
     
 

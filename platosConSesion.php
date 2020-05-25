@@ -21,6 +21,8 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 
 $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +36,7 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 		<script>
 			$(document).ready(function () {
 			var desplegado = false;
+			var desplegado2 = false;
 			$('label').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
@@ -57,7 +60,12 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 					}
 				}
 			});
-			
+			$("#comentar").click(function(){
+				
+				$("textarea").toggle();
+				$("#continuar").toggle();
+				
+			});
 		});
 		</script>
 
@@ -133,7 +141,37 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
 								echo "<button id='comentar'>Comentar</button>";
 
-								echo "<textarea name='textarea' rows='10' cols='500'></textarea>";
+								echo "<form action='platosConSesion.php' method='post'><textarea name='texto' rows='10' cols='185'></textarea>";
+
+								echo "<button type='submit' name='continuar' id='continuar'>Continuar</button></form>";
+
+								if(isset($_POST["continuar"])){
+									$obj3=consumir_servicio_REST($ruta."usuario/usuario/".urlencode($_SESSION["usuario"]), "GET");
+									if(isset($obj3->mensaje_error)){
+										die($obj3->mensaje_error);
+									}elseif (isset($obj3->mensaje)) {
+										echo "<p>".$obj3->mensaje."</p>";
+									}else{	
+										$usuario = $obj3->usuario->id_usuario;
+									}	
+
+									$usuario = (int)$usuario;
+									$plato = (int)$_SESSION["plato"];
+
+									$datos_comentario["usuario"]=$usuario;
+									$datos_comentario["plato"]=$plato;
+									$datos_comentario["comentario"]=$_POST["texto"];
+									var_dump($datos_comentario);
+										$obj=consumir_servicio_REST($ruta."insertarComentario", "POST", $datos_comentario);
+										if(isset($obj->mensaje_error)){
+											die($obj->mensaje_error);
+										}else{
+											echo "<form method='post' action='index.php'>";
+											echo "<p>".$obj->mensaje."</p>";
+											echo "<input type='submit' value='Atras'/>";
+											echo "</form>";
+										}
+								}
 
 						echo "</section>";
 

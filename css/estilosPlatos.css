@@ -139,6 +139,10 @@ nav{
   textarea{
     display: none;
   }
+  #continuar{
+    border: 3px solid #800040;
+    display: none;
+  }
   @media all and (min-width: 700px) {
     nav{
       transform: translate(-550px);
