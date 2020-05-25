@@ -2,7 +2,23 @@
 
 <?php
 
-	
+function consumir_servicio_REST($url,$metodo,$datos=null)
+{
+       
+        $llamada = curl_init(); 
+        curl_setopt($llamada, CURLOPT_URL, $url); 
+        curl_setopt($llamada, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($llamada, CURLOPT_CUSTOMREQUEST, $metodo);
+        if(isset($datos))
+            curl_setopt($llamada, CURLOPT_POSTFIELDS, http_build_query($datos));
+    
+        $response=curl_exec($llamada);
+        curl_close($llamada);
+        if(!$response) 
+            die("Error consumiendo el servicio Web: ".$url);
+    
+        return json_decode($response);
+}
 
 	$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
@@ -106,26 +122,43 @@
 		<main>
 
 		<?php 
-						/*$obj=consumir_servicio_REST($ruta."platos", "GET");
-						if (isset($obj->mensaje_error)) {
-							die($obj->mensaje_error);
-						}else {
-							foreach($obj->platos as $fila){
-								echo "<section>";
-									echo "<div id='img'>";
-										echo "<img src='img/".$fila->foto."'></img>";
-									echo "</div>";
+						$obj=consumir_servicio_REST($ruta."usuariosRestaurantes", "GET");
+						
+							if (isset($obj->mensaje_error)) {
+								die($obj->mensaje_error);
+							}else {
+				
+								foreach($obj->usuarios as $fila){
+									echo "<h1 id='usuario'>".$fila->usuario."</h1>";
+									
+									$obj2=consumir_servicio_REST($ruta."platosRestaurantes/".urlencode($fila->id_usuario), "GET");
+									if (isset($obj2->mensaje_error)) {
+										die($obj2->mensaje_error);
+									}else {
+										foreach($obj2->platos as $fila){
+											echo "<section>";
+												echo "<div id='img'>";
+													echo "<img src='img/".$fila->foto."'></img>";
+												echo "</div>";
 
-									echo "<div id='text'>";
-										echo "<form action='index.php' method='post'>";
-										echo "<button type='submit' value='".$fila->id_plato."' name='btPlato'><h2>".$fila->nombre."</h2></button>";
-										echo "<p>".$fila->descripcion."</p>";
-										echo "</form>";
-									echo "</div>";
+												echo "<div id='text'>";
+													echo "<form action='index.php' method='post'>";
+													echo "<button type='submit' value='".$fila->id_plato."' name='btPlato'><h2>".$fila->nombre."</h2></button>";
+													echo "<p>".$fila->descripcion."</p>";
+													echo "</form>";
+												echo "</div>";
+											echo "</section>";
+										}
+										
+									}
+								}
+								
 
-								echo "</section>";	
+								
 							}
-						}*/
+						
+
+						
 		?>
 
 			

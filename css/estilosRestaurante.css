@@ -144,6 +144,11 @@ nav{
     cursor: pointer;
   } 
 
+  #usuario{
+    text-align: center;
+    color: white;
+  }
+
   @media all and (min-width: 700px) {
     nav{
       transform: translate(-550px);
@@ -204,8 +209,7 @@ nav{
       display: none;
     }
     main{
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-direction: column;
       width: 100%;
       margin: 0;
     }
@@ -234,6 +238,11 @@ nav{
     #volver{
       font-size: 1.5vw;
     }
-     
+    #usuario{
+      text-align: center;
+      color: white;
+      width: 50%;
+      height: 10%;
+    } 
   }
 

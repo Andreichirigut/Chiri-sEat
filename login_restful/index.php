@@ -17,6 +17,12 @@ $app->contentType('application/json; charset=utf-8');
 $app->get('/platos', function () {
 	echo json_encode(obtener_platos(), JSON_FORCE_OBJECT);
 });
+$app->get('/platosRestaurantes/:valor', function ($valor) {
+	echo json_encode(obtener_platosRestaurantes($valor), JSON_FORCE_OBJECT);
+});
+$app->get('/usuariosRestaurantes', function () {
+	echo json_encode(obtener_usuariosRestaurantes(), JSON_FORCE_OBJECT);
+});
 $app->get('/comentarios', function () {
 	echo json_encode(obtener_comentarios(), JSON_FORCE_OBJECT);
 });
@@ -24,6 +30,7 @@ $app->get('/comentarios', function () {
 $app->get('/plato/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_plato($columna, $valor), JSON_FORCE_OBJECT);
 });
+
 $app->get('/comentario/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_comentario($columna, $valor), JSON_FORCE_OBJECT);
 });

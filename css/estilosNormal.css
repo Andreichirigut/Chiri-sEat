@@ -161,7 +161,7 @@ label{
   #footer2 p:hover{
     cursor: pointer;
   } 
-
+  
   @media all and (min-width: 700px) {
     #nav1{
       transform: translate(-550px);
@@ -267,7 +267,8 @@ label{
       width: 50%;
     }
     #nav1 button{
-      width: 10%;
+      width: 100%;
     }
+    
   }
 
