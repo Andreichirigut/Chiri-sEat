@@ -43,21 +43,21 @@
 			$('#ham').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('#nav1').animate({ 'left': '+=350px' });
+						$('#nav1').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('#nav1').animate({ 'left': '-=350px' });
+						$('#nav1').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}
 				}else{
 					if (desplegado == false) {
-						$('#nav1').animate({ 'left': '+=550px' });
+						$('#nav1').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('#nav1').animate({ 'left': '-=550px' });
+						$('#nav1').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}
@@ -67,24 +67,30 @@
 			$('#ham2').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=750px' });
+						$('#nav2').animate({ 'left': '-=150vw' });
 
 						desplegado = true;
 					} else {
-						$('#nav2').animate({ 'left': '+=750px' });
+						$('#nav2').animate({ 'left': '+=150vw' });
+
+						desplegado = false;
+					}
+				}else if($(window).width() < 1000){
+					if (desplegado == false) {
+						$('#nav2').animate({ 'left': '-=100vw' });
+
+						desplegado = true;
+					} else {
+						$('#nav2').animate({ 'left': '+=100vw' });
 
 						desplegado = false;
 					}
 				}else{
-					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=1000px' });
-
-						desplegado = true;
-					} else {
-						$('#nav2').animate({ 'left': '+=1000px' });
-
-						desplegado = false;
-					}
+					
+				
+					$("#nav2").toggle();
+					
+					
 				}
 			});
 			

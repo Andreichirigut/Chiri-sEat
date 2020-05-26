@@ -51,21 +51,21 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 			$('label').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('nav').animate({ 'left': '+=350px' });
+						$('nav').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('nav').animate({ 'left': '-=350px' });
+						$('nav').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}
 				}else{
 					if (desplegado == false) {
-						$('nav').animate({ 'left': '+=550px' });
+						$('nav').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('nav').animate({ 'left': '-=550px' });
+						$('nav').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}

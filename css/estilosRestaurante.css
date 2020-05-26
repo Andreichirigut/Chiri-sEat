@@ -33,7 +33,7 @@ nav{
   list-style: none;
   background-color: black;
   width: 50vw;
-  transform: translate(-350px);
+  transform: translate(-50vw);
   position: absolute;
   z-index: 1;
   }
@@ -147,11 +147,12 @@ nav{
   #usuario{
     text-align: center;
     color: white;
+    margin-left: 3vw;
   }
 
   @media all and (min-width: 700px) {
     nav{
-      transform: translate(-550px);
+      transform: translate(-50vw);
       width: 40vw;
       border-radius: 1vw;
     }
