@@ -6,20 +6,11 @@
 
 	$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
-	
 	if(isset($_POST["volver"])){
 		session_unset();
 		header("Location:index.php");
 		exit;
 	}
-
-	
-	if(isset($_POST["btPlato"])){
-		$_SESSION["plato"]=$_POST["btPlato"];
-		header("Location: platosConSesion.php");
-		exit;
-		
-	}	
 	
 ?>
 
@@ -27,9 +18,10 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
+		<title>Chiri'sEat</title>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="css/estilosNormal.css">
+		<link rel="stylesheet" href="css/estilosSubir.css">
 		<script src="jq/jquery-3.1.1.min.js" type="text/javascript"></script>
 		<script src="https://kit.fontawesome.com/f6808f6c04.js" crossorigin="anonymous"></script>
 
@@ -37,65 +29,36 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>	
 	
-	<script>
+		<script>
 			$(document).ready(function () {
 			var desplegado = false;
-			$('#ham').click(function () {
+			$('label').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('#nav1').animate({ 'left': '+=50vw' });
+						$('nav').animate({ 'left': '+=350px' });
 
 						desplegado = true;
 					} else {
-						$('#nav1').animate({ 'left': '-=50vw' });
+						$('nav').animate({ 'left': '-=350px' });
 
 						desplegado = false;
 					}
 				}else{
 					if (desplegado == false) {
-						$('#nav1').animate({ 'left': '+=50vw' });
+						$('nav').animate({ 'left': '+=550px' });
 
 						desplegado = true;
 					} else {
-						$('#nav1').animate({ 'left': '-=50vw' });
+						$('nav').animate({ 'left': '-=550px' });
 
 						desplegado = false;
 					}
-				}
-			});
-
-			$('#ham2').click(function () {
-				if ($(window).width() < 700) {
-					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=150vw' });
-
-						desplegado = true;
-					} else {
-						$('#nav2').animate({ 'left': '+=150vw' });
-
-						desplegado = false;
-					}
-				}else if($(window).width() < 1000){
-					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=100vw' });
-
-						desplegado = true;
-					} else {
-						$('#nav2').animate({ 'left': '+=100vw' });
-
-						desplegado = false;
-					}
-				}else{
-					
-				
-					$("#nav2").toggle();
-					
-					
 				}
 			});
 			
 		});
 		</script>
+
 
 		<script>
 			$(document).ready(function(){
@@ -103,19 +66,14 @@
 			});
 		</script>
 
-		<title>Ejer2</title>
-		
-
 	</head>
 	<body>
-	<div id="head">
-		<label for="hamburguesa" id="ham">
+		
+		<div id="head">
+		<label for="hamburguesa">
 			<span>&#x2630;</span>
 		</label>
 			<h1>Chiri'sEat</h1>
-		<label for="hamburguesa2" id="ham2">
-			<span><i class="fas fa-user"></i></span>
-		</label>	
 		
 		<?php
 			/*if(isset($_SESSION["restringida"])){
@@ -128,38 +86,61 @@
 		?>
 		</div>
 
-		<nav id="nav1">
-			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-			<li><a href="restaurantesConSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
-			<li>
-			<form action="index.php" method="post">
-				<button type="submit" name="volver" id="volver"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></button>
-			</form>
-			</li>
-		</nav>
+		
+			<nav>
+				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Inicio</span></a>
+				<li>
+				<form action="index.php" method="post">
+					<button type="submit" name="volver" id="volver"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></button>
+				</form>
+				</li>
+			</nav>
+		
 
+		
 
-		<nav id="nav2">
-			<li><a id="platos" href="subirPlato.php"><i class="fas fa-users"></i><span> Subir Platos</span></a>
-			<li><a id="misPlatos" href="#"><i class="fas fa-utensils"></i><span> Mis platos</span></a>
-			<li>
-			<form action="index.php" method="post">
-				<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
-			</form>
-			</li>
-		</nav>
-
-		<div class="slider">
-			<div><img src="img/slider.jpg"></img></div>
-			<div><img src="img/slider2.jpg"></img></div>
-			<div><img src="img/slider3.jpg"></img></div>
-  		</div>
+		
 
 		<main>
 
+			<section>
+
+			<form method="post" action="index.php" id="formulario">
+			<div id="campos">
+				
+					<label for="usuario">Usuario:</label>
+					<input type="text" id="usuario" name="usuario" value="<?php if(isset($_POST["usuario"])) echo $_POST["usuario"];?>"/>
+					
+					<?php
+						if(isset($errorUsuario))
+							echo $errorUsuario;
+					
+					?>
+					
+			
+				
+					<label for="clave">Contraseña:</label>
+					<input type="password" id="clave" name="clave" value=""/>
+					
+					<?php
+						if(isset($errorClave))
+							echo $errorClave;
+
+						
+					?>
+							
+				
+		</div>
+		<div id="botones">
+			<button type="submit" name="btnEntrar" id="boton1"><span><i class="fas fa-arrow-circle-right"></span></i></button>
+			<button type="submit" name="btnRegistrar" id="botonReg" formaction="registro_usuario.php">Registrarse</button>
+		</div>
+		</form>
+
 		<?php 
-						$obj=consumir_servicio_REST($ruta."platos", "GET");
+
+			
+						/*$obj=consumir_servicio_REST($ruta."platos", "GET");
 						if (isset($obj->mensaje_error)) {
 							die($obj->mensaje_error);
 						}else {
@@ -172,21 +153,21 @@
 									echo "<div id='text'>";
 										echo "<form action='index.php' method='post'>";
 										echo "<button type='submit' value='".$fila->id_plato."' name='btPlato'><h2>".$fila->nombre."</h2></button>";
-										echo "</form>";
 										echo "<p>".$fila->descripcion."</p>";
+										echo "</form>";
 									echo "</div>";
 
 								echo "</section>";	
 							}
-						}
+						}*/
 		?>
 
-			
+			</section>
 			
 		</main>
 
 		<footer>
-				<div id="footer1">
+			<div id="footer1">
 						<h1>Chiri'sEat</h1>
 						<p>Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final</p>
 						<p><i class="fab fa-facebook-square"></i><i class="fab fa-instagram-square"></i><i class="fab fa-twitter-square"></i></p>
@@ -201,13 +182,6 @@
 						
 				</div>
 		</footer>
-				
-
-				
-
-		
-			
-
 	</body>
 
 </html>

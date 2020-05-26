@@ -256,6 +256,28 @@
         }
     }
 
+    function insertar_plato($nombre,$descripcion,$foto,$receta,$usuario){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="insert into platos(nombre, descripcion, foto, receta, id_usuario) VALUES('".$nombre."', '".$descripcion."', '".$foto."', '".$receta."', '".$usuario."')";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                mysqli_close($con);
+                return array("mensaje"=>"Se ha insertado el plato");
+                
+                
+        
+            }
+        }
+    }
+
     /*function borrar_libro($referencia){ 
         $con=conectar();
         if(!$con){

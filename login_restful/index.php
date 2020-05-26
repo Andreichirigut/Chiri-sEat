@@ -48,6 +48,9 @@ $app->post('/insertarUsuario', function () {
 $app->post('/insertarComentario', function () {
 	echo json_encode(insertar_comentario($_POST["usuario"],$_POST["plato"],$_POST["comentario"]), JSON_FORCE_OBJECT);
 });
+$app->post('/insertarPlato', function () {
+	echo json_encode(insertar_plato($_POST["nombre"],$_POST["descripcion"],$_POST["foto"],$_POST["receta"], $_POST["usuario"]), JSON_FORCE_OBJECT);
+});
 
 /*$app->put('/actualizarLibro/:referencia', function ($refrencia) use($app) {
 	$datos_libros=$app->request->put();

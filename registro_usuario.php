@@ -73,7 +73,7 @@ if(isset($_POST["btnRegistro"])){
 		<script>
 			$(document).ready(function () {
 			var desplegado = false;
-			$('label').click(function () {
+			$('#hamburguesa').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
 						$('nav').animate({ 'left': '+=50vw' });
@@ -111,7 +111,7 @@ if(isset($_POST["btnRegistro"])){
 	<body>
 		
 		<div id="head">
-		<label for="hamburguesa">
+		<label for="hamburguesa" id="hamburguesa">
 			<span>&#x2630;</span>
 		</label>
 			<h1>Chiri'sEat</h1>
