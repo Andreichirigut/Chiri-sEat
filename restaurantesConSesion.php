@@ -136,7 +136,7 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 								echo "<div id='container'>";
 								echo "<h1 id='usuario'>".$fila->usuario."</h1>";
 								
-								$obj2=consumir_servicio_REST($ruta."platosRestaurantes/".urlencode($fila->id_usuario), "GET");
+								$obj2=consumir_servicio_REST($ruta."platosCorespondientes/".urlencode($fila->id_usuario), "GET");
 								if (isset($obj2->mensaje_error)) {
 									die($obj2->mensaje_error);
 								}else {

@@ -1,8 +1,25 @@
 
 
 <?php
-
-	
+session_name("ChirisEat");
+session_start();
+function consumir_servicio_REST($url,$metodo,$datos=null)
+{
+       
+        $llamada = curl_init(); 
+        curl_setopt($llamada, CURLOPT_URL, $url); 
+        curl_setopt($llamada, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($llamada, CURLOPT_CUSTOMREQUEST, $metodo);
+        if(isset($datos))
+            curl_setopt($llamada, CURLOPT_POSTFIELDS, http_build_query($datos));
+    
+        $response=curl_exec($llamada);
+        curl_close($llamada);
+        if(!$response) 
+            die("Error consumiendo el servicio Web: ".$url);
+    
+        return json_decode($response);
+}
 
 	$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
@@ -142,7 +159,7 @@
 
 		<nav id="nav2">
 			<li><a id="platos" href="subirPlato.php"><i class="fas fa-users"></i><span> Subir Platos</span></a>
-			<li><a id="misPlatos" href="misPlatos.php"><i class="fas fa-utensils"></i><span> Mis platos</span></a>
+			<li><a id="misPlatos" href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
 			<li>
 			<form action="index.php" method="post">
 				<button type="submit" name="volver"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</button>
@@ -159,11 +176,23 @@
 		<main>
 
 		<?php 
-						$obj=consumir_servicio_REST($ruta."platos", "GET");
+
+				$obj3=consumir_servicio_REST($ruta."usuario/usuario/".urlencode($_SESSION["usuario"]), "GET");
+				if(isset($obj3->mensaje_error)){
+					die($obj3->mensaje_error);
+				}elseif (isset($obj3->mensaje)) {
+					echo "<p>".$obj3->mensaje."</p>";
+				}else{	
+					$usuario = $obj3->usuario->id_usuario;
+				}
+
+				$usuario = (int)$usuario;	
+		
+						$obj2=consumir_servicio_REST($ruta."platosCorespondientes/".urlencode($usuario), "GET");
 						if (isset($obj->mensaje_error)) {
 							die($obj->mensaje_error);
 						}else {
-							foreach($obj->platos as $fila){
+							foreach($obj2->platos as $fila){
 								echo "<section>";
 									echo "<div id='img'>";
 										echo "<img src='img/".$fila->foto."'></img>";
