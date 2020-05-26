@@ -141,7 +141,7 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
 								echo "<button id='comentar'>Comentar</button>";
 
-								echo "<form action='platosConSesion.php' method='post'><textarea name='texto' rows='10' cols='195'></textarea>";
+								echo "<form action='platosConSesion.php' method='post'><textarea name='texto' rows='10' cols='182'></textarea>";
 
 								echo "<button type='submit' name='continuar' id='continuar'>Continuar</button></form>";
 

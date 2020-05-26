@@ -1,8 +1,25 @@
 
 
 <?php
-
-	
+session_name("ChirisEat");
+session_start();
+function consumir_servicio_REST($url,$metodo,$datos=null)
+{
+       
+        $llamada = curl_init(); 
+        curl_setopt($llamada, CURLOPT_URL, $url); 
+        curl_setopt($llamada, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($llamada, CURLOPT_CUSTOMREQUEST, $metodo);
+        if(isset($datos))
+            curl_setopt($llamada, CURLOPT_POSTFIELDS, http_build_query($datos));
+    
+        $response=curl_exec($llamada);
+        curl_close($llamada);
+        if(!$response) 
+            die("Error consumiendo el servicio Web: ".$url);
+    
+        return json_decode($response);
+}
 
 	$ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
@@ -12,6 +29,51 @@
 		exit;
 	}
 	
+	if(isset($_POST["btnSubir"])){
+   
+    
+    	if($_POST["nombre"]=="")
+           $errorNombre=" * Campo Vacío * "; 
+    
+    	if($_POST["descripcion"]=="")
+			$errorDescripcion=" * Campo Vacío * ";
+
+		if($_POST["receta"]=="")
+			$errorReceta=" * Campo Vacío * ";	
+			
+
+	if(!isset($errorNombre) && !isset($errorDescripcion) && !isset($errorReceta)){
+
+			$obj3=consumir_servicio_REST($ruta."usuario/usuario/".urlencode($_SESSION["usuario"]), "GET");
+				if(isset($obj3->mensaje_error)){
+					die($obj3->mensaje_error);
+				}elseif (isset($obj3->mensaje)) {
+					echo "<p>".$obj3->mensaje."</p>";
+				}else{	
+					$usuario = $obj3->usuario->id_usuario;
+				}
+
+				$usuario = (int)$usuario;	
+
+			$datos_platos["nombre"]=$_POST["nombre"];
+			$datos_platos["descripcion"]=$_POST["descripcion"];
+			$datos_platos["foto"]=$_FILES["foto"]["name"];
+			$datos_platos["receta"]=$_POST["receta"];
+			$datos_platos["usuario"]=$usuario;
+
+
+			move_uploaded_file($_FILES['foto']['tmp_name'], 'img/' . $_FILES['foto']['name']);
+
+			$obj=consumir_servicio_REST($ruta."insertarPlato", "POST", $datos_platos);
+			if(isset($obj->mensaje_error)){
+				die($obj->mensaje_error);
+			}else{
+				header("Location: index.php");
+				exit;
+			}
+       
+	}
+}
 ?>
 
 
@@ -32,24 +94,24 @@
 		<script>
 			$(document).ready(function () {
 			var desplegado = false;
-			$('label').click(function () {
+			$('#hamburguesa').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('nav').animate({ 'left': '+=350px' });
+						$('nav').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('nav').animate({ 'left': '-=350px' });
+						$('nav').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}
 				}else{
 					if (desplegado == false) {
-						$('nav').animate({ 'left': '+=550px' });
+						$('nav').animate({ 'left': '+=50vw' });
 
 						desplegado = true;
 					} else {
-						$('nav').animate({ 'left': '-=550px' });
+						$('nav').animate({ 'left': '-=50vw' });
 
 						desplegado = false;
 					}
@@ -70,7 +132,7 @@
 	<body>
 		
 		<div id="head">
-		<label for="hamburguesa">
+		<label for="hamburguesa" id="hamburguesa">
 			<span>&#x2630;</span>
 		</label>
 			<h1>Chiri'sEat</h1>
@@ -88,81 +150,73 @@
 
 		
 			<nav>
-				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Inicio</span></a>
-				<li>
-				<form action="index.php" method="post">
-					<button type="submit" name="volver" id="volver"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></button>
-				</form>
-				</li>
+				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
+				<li><a href="restaurantesConSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
+				<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
+				<li><a id="inicio" href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
+				
 			</nav>
 		
 
 		
-
+		<div class="slider">
+			<div><img src="img/slider.jpg"></img></div>
+			<div><img src="img/slider2.jpg"></img></div>
+			<div><img src="img/slider3.jpg"></img></div>
+  		</div>
 		
 
 		<main>
 
-			<section>
+			
 
-			<form method="post" action="index.php" id="formulario">
+			<form method="post" action="subirPlato.php" id="formulario" enctype="multipart/form-data">
 			<div id="campos">
 				
-					<label for="usuario">Usuario:</label>
-					<input type="text" id="usuario" name="usuario" value="<?php if(isset($_POST["usuario"])) echo $_POST["usuario"];?>"/>
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" value="<?php if(isset($_POST["nombre"])) echo $_POST["nombre"];?>"/>
 					
 					<?php
-						if(isset($errorUsuario))
-							echo $errorUsuario;
+						if(isset($errorNombre))
+							echo $errorNombre;
 					
 					?>
 					
 			
 				
-					<label for="clave">Contraseña:</label>
-					<input type="password" id="clave" name="clave" value=""/>
+					<label for="descripcion">Descripcion:</label>
+					<textarea name='descripcion' rows='10' cols='195'></textarea>
 					
 					<?php
-						if(isset($errorClave))
-							echo $errorClave;
+						if(isset($errorDescripcion))
+							echo $errorDescripcion;
 
 						
+					?>
+
+					<label for="foto">Foto:</label>
+					<input name="foto" type="file" id="foto"/>
+
+
+					<label for="receta">Receta:</label>
+					<textarea name='receta' rows='10' cols='195'></textarea>
+					
+					<?php
+						if(isset($errorReceta))
+							echo $errorReceta;
+					
 					?>
 							
 				
 		</div>
 		<div id="botones">
-			<button type="submit" name="btnEntrar" id="boton1"><span><i class="fas fa-arrow-circle-right"></span></i></button>
-			<button type="submit" name="btnRegistrar" id="botonReg" formaction="registro_usuario.php">Registrarse</button>
+			<button type="submit" name="btnSubir" id="boton1">Subir</button>
 		</div>
 		</form>
 
-		<?php 
+		
 
 			
-						/*$obj=consumir_servicio_REST($ruta."platos", "GET");
-						if (isset($obj->mensaje_error)) {
-							die($obj->mensaje_error);
-						}else {
-							foreach($obj->platos as $fila){
-								echo "<section>";
-									echo "<div id='img'>";
-										echo "<img src='img/".$fila->foto."'></img>";
-									echo "</div>";
-
-									echo "<div id='text'>";
-										echo "<form action='index.php' method='post'>";
-										echo "<button type='submit' value='".$fila->id_plato."' name='btPlato'><h2>".$fila->nombre."</h2></button>";
-										echo "<p>".$fila->descripcion."</p>";
-										echo "</form>";
-									echo "</div>";
-
-								echo "</section>";	
-							}
-						}*/
-		?>
-
-			</section>
 			
 		</main>
 
