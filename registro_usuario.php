@@ -1,4 +1,21 @@
 <?php
+function consumir_servicio_REST($url,$metodo,$datos=null)
+{
+       
+        $llamada = curl_init(); 
+        curl_setopt($llamada, CURLOPT_URL, $url); 
+        curl_setopt($llamada, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($llamada, CURLOPT_CUSTOMREQUEST, $metodo);
+        if(isset($datos))
+            curl_setopt($llamada, CURLOPT_POSTFIELDS, http_build_query($datos));
+    
+        $response=curl_exec($llamada);
+        curl_close($llamada);
+        if(!$response) 
+            die("Error consumiendo el servicio Web: ".$url);
+    
+        return json_decode($response);
+}
 
 $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
@@ -23,9 +40,9 @@ if(isset($_POST["btnRegistro"])){
 
 	if(!isset($errorUsuario) && !isset($errorClave1) && !isset($errorClave2) && !isset($errorEmail) && !isset($errorClave)){
 
-		echo "entrooo";
+		
 
-			/*$datos_usuario["usuario"]=$_POST["usuario"];
+			$datos_usuario["usuario"]=$_POST["usuario"];
 			$datos_usuario["clave"]=$_POST["clave1"];
 			$datos_usuario["email"]=$_POST["email"];
 			$datos_usuario["tipo"]=$_POST["tipo"];
@@ -33,11 +50,9 @@ if(isset($_POST["btnRegistro"])){
 			if(isset($obj->mensaje_error)){
 				die($obj->mensaje_error);
 			}else{
-				echo "<form method='post' action='index.php'>";
-				echo "<p>".$obj->mensaje."</p>";
-				echo "<input type='submit' value='Atras'/>";
-				echo "</form>";
-			}^*/
+				header("Location: index.php");
+				exit;	
+			}
        
 	}
 }
@@ -127,7 +142,7 @@ if(isset($_POST["btnRegistro"])){
 
 		<div id="login">
 			<h1>Registrarse</h1>
-		<form method="post" action="index.php">
+		<form method="post" action="registro_usuario.php">
 			<div id="campos">
 				
 					<label for="usuario">Usuario:</label>

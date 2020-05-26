@@ -166,10 +166,8 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 										if(isset($obj->mensaje_error)){
 											die($obj->mensaje_error);
 										}else{
-											echo "<form method='post' action='index.php'>";
-											echo "<p>".$obj->mensaje."</p>";
-											echo "<input type='submit' value='Atras'/>";
-											echo "</form>";
+											header("Location: index.php");
+											exit;
 										}
 								}
 

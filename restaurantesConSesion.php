@@ -133,6 +133,7 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 						}else {
 			
 							foreach($obj->usuarios as $fila){
+								echo "<div id='container'>";
 								echo "<h1 id='usuario'>".$fila->usuario."</h1>";
 								
 								$obj2=consumir_servicio_REST($ruta."platosRestaurantes/".urlencode($fila->id_usuario), "GET");
@@ -155,6 +156,7 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 									}
 									
 								}
+								echo "</div>";
 							}
 							
 
