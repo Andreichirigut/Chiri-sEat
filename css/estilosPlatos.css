@@ -29,6 +29,7 @@ h3{
 }
 #comentario{
   padding: 1vw;
+  width: 100%;
 }
 label{
   cursor:pointer;
@@ -160,6 +161,22 @@ nav{
     
     75% {margin-left: -300%;}
     100% {margin-left: -300%;}
+  }
+
+  h4{
+    text-align: center;
+    width: 100%;
+  }
+  #formComent{
+    width: 100%;
+  }
+  #formComent textarea{
+    width: 100%;
+  } 
+  #votar{
+    width: 10vw;
+    font-size: 3vw;
+    margin-left: 21vw;
   }
   @media all and (min-width: 700px) {
     nav{

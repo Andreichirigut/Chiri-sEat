@@ -21,7 +21,61 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 
 $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
+if(isset($_POST["votarMas"])){
+	$plato = (int)$_SESSION["plato"];
 
+	$datos_votos["plato"]=$plato;
+
+	
+	$obj=consumir_servicio_REST($ruta."sumarVoto", "POST", $datos_votos);
+	if(isset($obj->mensaje_error)){
+		die($obj->mensaje_error);
+	}else{
+		header("Location: platosConSesion.php");
+		exit;
+	}
+}
+
+if(isset($_POST["votarMenos"])){
+	$plato = (int)$_SESSION["plato"];
+
+	$datos_votos["plato"]=$plato;
+
+	
+	$obj=consumir_servicio_REST($ruta."restarVoto", "POST", $datos_votos);
+	if(isset($obj->mensaje_error)){
+		die($obj->mensaje_error);
+	}else{
+		header("Location: platosConSesion.php");
+		exit;
+	}
+}
+
+if(isset($_POST["continuar"])){
+	$obj3=consumir_servicio_REST($ruta."usuario/usuario/".urlencode($_SESSION["usuario"]), "GET");
+	if(isset($obj3->mensaje_error)){
+		die($obj3->mensaje_error);
+	}elseif (isset($obj3->mensaje)) {
+		echo "<p>".$obj3->mensaje."</p>";
+	}else{	
+		$usuario = $obj3->usuario->id_usuario;
+	}	
+
+	$usuario = (int)$usuario;
+	$plato = (int)$_SESSION["plato"];
+
+	$datos_comentario["usuario"]=$usuario;
+	$datos_comentario["plato"]=$plato;
+	$datos_comentario["comentario"]=$_POST["texto"];
+	var_dump($datos_comentario);
+		$obj=consumir_servicio_REST($ruta."insertarComentario", "POST", $datos_comentario);
+		if(isset($obj->mensaje_error)){
+			die($obj->mensaje_error);
+		}else{
+			header("Location: platosConSesion.php");
+			exit;
+		}
+}
 
 ?>
 <!DOCTYPE html>
@@ -110,7 +164,13 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
 						echo "<section>";
 
-						echo "<h1>".$obj->plato->nombre."</h1>";	
+						echo "<h1>".$obj->plato->nombre."</h1>";
+						$numVotos = $obj->plato->votos;
+						echo "<h4>";
+							for ($i=0; $i < $numVotos; $i++) { 
+								echo "<i class='fas fa-star'></i>";
+							}
+						echo "</h4>";	
 
 							echo "<p id='foto'><img src='img/".$obj->plato->foto."'></img></p>";
 							echo "<p id='descripcion'><strong>".$obj->plato->descripcion."</strong></p>";
@@ -123,17 +183,28 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 								}elseif (isset($obj2->mensaje)) {
 									echo "<p>".$obj2->mensaje."</p>";
 								}else{	
-									$id_usuario=$obj2->comentario->id_usuario;
-									$obj3=consumir_servicio_REST($ruta."usuario/id_usuario/".urlencode($id_usuario), "GET");
-									if(isset($obj3->mensaje_error)){
-										die($obj3->mensaje_error);
-									}elseif (isset($obj3->mensaje)) {
-										echo "<p>".$obj3->mensaje."</p>";
-									}else{	
-										echo "<p id='usuario'>".$obj3->usuario->usuario."</p>";
-									}	
+									/*$id_usuario=$obj2->comentario->id_usuario;
+									echo $id_usuario;*/
+									foreach($obj2->comentarios as $fila){
+																				
+										$obj3=consumir_servicio_REST($ruta."usuario/id_usuario/".urlencode($fila->id_usuario), "GET");
+										if(isset($obj3->mensaje_error)){
+											die($obj3->mensaje_error);
+										}elseif (isset($obj3->mensaje)) {
+											echo "<p>".$obj3->mensaje."</p>";
+										}else{
+											echo "<p id='usuario'>".$obj3->usuario->usuario."</p>";
+											$obj4=consumir_servicio_REST($ruta."comentarioConcreto/id_plato/".urlencode($fila->id_plato), "GET");
+											if(isset($obj4->mensaje_error)){
+												die($obj4->mensaje_error);
+											}elseif (isset($obj4->mensaje)) {
+												echo "<p>".$obj4->mensaje."</p>";
+											}else{
+												echo "<p id='comentario'>".$fila->comentario."</p>";
+											}	
+										}
+									}
 									
-									echo "<p id='comentario'>".$obj2->comentario->comentario."</p>";
 									
 									
 									
@@ -141,35 +212,14 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
 								echo "<button id='comentar'>Comentar</button>";
 
-								echo "<form action='platosConSesion.php' method='post'><textarea name='texto' rows='10' cols='182'></textarea>";
+								echo "<form action='platosConSesion.php' method='post' id='formComent'><textarea name='texto' rows='10' cols='150'></textarea>";
 
-								echo "<button type='submit' name='continuar' id='continuar'>Continuar</button></form>";
+								echo "<button type='submit' name='continuar' id='continuar'>Continuar</button>";
 
-								if(isset($_POST["continuar"])){
-									$obj3=consumir_servicio_REST($ruta."usuario/usuario/".urlencode($_SESSION["usuario"]), "GET");
-									if(isset($obj3->mensaje_error)){
-										die($obj3->mensaje_error);
-									}elseif (isset($obj3->mensaje)) {
-										echo "<p>".$obj3->mensaje."</p>";
-									}else{	
-										$usuario = $obj3->usuario->id_usuario;
-									}	
+								echo "<button type='submit' name='votarMas' id='votar'><i class='far fa-thumbs-up'></i></button>";
+								echo "<button type='submit' name='votarMenos' id='votar'><i class='far fa-thumbs-down'></i></button></form>";
 
-									$usuario = (int)$usuario;
-									$plato = (int)$_SESSION["plato"];
-
-									$datos_comentario["usuario"]=$usuario;
-									$datos_comentario["plato"]=$plato;
-									$datos_comentario["comentario"]=$_POST["texto"];
-									var_dump($datos_comentario);
-										$obj=consumir_servicio_REST($ruta."insertarComentario", "POST", $datos_comentario);
-										if(isset($obj->mensaje_error)){
-											die($obj->mensaje_error);
-										}else{
-											header("Location: index.php");
-											exit;
-										}
-								}
+								
 
 						echo "</section>";
 

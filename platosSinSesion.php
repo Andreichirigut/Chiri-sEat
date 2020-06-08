@@ -102,7 +102,13 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
 						echo "<section>";
 
-						echo "<h1>".$obj->plato->nombre."</h1>";	
+						echo "<h1>".$obj->plato->nombre."</h1>";
+						$numVotos = $obj->plato->votos;
+						echo "<h4>";
+							for ($i=0; $i < $numVotos; $i++) { 
+								echo "<i class='fas fa-star'></i>";
+							}
+						echo "</h4>";	
 
 							echo "<p id='foto'><img src='img/".$obj->plato->foto."'></img></p>";
 							echo "<p id='descripcion'><strong>".$obj->plato->descripcion."</strong></p>";
@@ -115,19 +121,26 @@ $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 								}elseif (isset($obj2->mensaje)) {
 									echo "<p>".$obj2->mensaje."</p>";
 								}else{	
-									$id_usuario=$obj2->comentario->id_usuario;
-									$obj3=consumir_servicio_REST($ruta."usuario/id_usuario/".urlencode($id_usuario), "GET");
-									if(isset($obj3->mensaje_error)){
-										die($obj3->mensaje_error);
-									}elseif (isset($obj3->mensaje)) {
-										echo "<p>".$obj3->mensaje."</p>";
-									}else{	
-										echo "<p id='usuario'>".$obj3->usuario->usuario."</p>";
-									}	
-									
-									echo "<p id='comentario'>".$obj2->comentario->comentario."</p>";
-									
-									
+									foreach($obj2->comentarios as $fila){
+																				
+										$obj3=consumir_servicio_REST($ruta."usuario/id_usuario/".urlencode($fila->id_usuario), "GET");
+										if(isset($obj3->mensaje_error)){
+											die($obj3->mensaje_error);
+										}elseif (isset($obj3->mensaje)) {
+											echo "<p>".$obj3->mensaje."</p>";
+										}else{
+											echo "<p id='usuario'>".$obj3->usuario->usuario."</p>";
+											$obj4=consumir_servicio_REST($ruta."comentarioConcreto/id_plato/".urlencode($fila->id_plato), "GET");
+											if(isset($obj4->mensaje_error)){
+												die($obj4->mensaje_error);
+											}elseif (isset($obj4->mensaje)) {
+												echo "<p>".$obj4->mensaje."</p>";
+											}else{
+												echo "<p id='comentario'>".$fila->comentario."</p>";
+											}	
+										}
+									}
+							
 								}
 
 						echo "</section>";

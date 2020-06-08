@@ -125,7 +125,7 @@
         }
     }
 
-    function obtener_comentario($columna, $valor){
+    function obtener_comentarioConcreto($columna, $valor){
         $con=conectar();
         if(!$con){
             return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
@@ -150,6 +150,31 @@
                 }
                 
         
+            }
+        }
+    }
+    
+
+    function obtener_comentario($columna, $valor){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="select * from comentarios where ".$columna."='".$valor."'";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                $comentarios=Array();
+                while($fila=mysqli_fetch_assoc($resultado)){
+                    $comentarios[]=$fila;
+                }
+                mysqli_free_result($resultado);
+                mysqli_close($con);
+                return array("comentarios"=>$comentarios);
             }
         }
     }
@@ -274,6 +299,45 @@
                 
                 
         
+            }
+        }
+    }
+
+
+    function sumar_voto($plato){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="update platos set votos=votos+1 where id_plato='".$plato."'";
+            $resultado=mysqli_query($con, $consulta);
+            if (!$resultado) {
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                mysqli_close($con);
+                return array("mensaje"=>"Se ha actualizado");
+            }
+        }
+    }
+
+    function restar_voto($plato){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="update platos set votos=votos-1 where id_plato='".$plato."'";
+            $resultado=mysqli_query($con, $consulta);
+            if (!$resultado) {
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                mysqli_close($con);
+                return array("mensaje"=>"Se ha actualizado");
             }
         }
     }

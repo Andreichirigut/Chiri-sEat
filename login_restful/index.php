@@ -34,6 +34,9 @@ $app->get('/plato/:columna/:valor', function ($columna, $valor) {
 $app->get('/comentario/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_comentario($columna, $valor), JSON_FORCE_OBJECT);
 });
+$app->get('/comentarioConcreto/:columna/:valor', function ($columna, $valor) {
+	echo json_encode(obtener_comentarioConcreto($columna, $valor), JSON_FORCE_OBJECT);
+});
 $app->get('/usuario/:columna/:valor', function ($columna, $valor) {
 	echo json_encode(obtener_usuario($columna, $valor), JSON_FORCE_OBJECT);
 });
@@ -50,6 +53,13 @@ $app->post('/insertarComentario', function () {
 });
 $app->post('/insertarPlato', function () {
 	echo json_encode(insertar_plato($_POST["nombre"],$_POST["descripcion"],$_POST["foto"],$_POST["receta"], $_POST["usuario"]), JSON_FORCE_OBJECT);
+});
+
+$app->post('/sumarVoto', function () {
+	echo json_encode(sumar_voto($_POST["plato"]), JSON_FORCE_OBJECT);
+});
+$app->post('/restarVoto', function () {
+	echo json_encode(restar_voto($_POST["plato"]), JSON_FORCE_OBJECT);
 });
 
 /*$app->put('/actualizarLibro/:referencia', function ($refrencia) use($app) {
