@@ -102,11 +102,7 @@ if(isset($_POST["btnEntrar"])){
 			<li><a href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
-		<div class="slider">
-			<div><img src="img/slider.jpg"></img></div>
-			<div><img src="img/slider2.jpg"></img></div>
-			<div><img src="img/slider3.jpg"></img></div>
-  		</div>
+		
 
 		<div id="login">
 			<h1>Iniciar Sesion</h1>

@@ -43,9 +43,9 @@ label{
   list-style: none;
   background-color: black;
   width: 50vw;
-  transform: translate(150vw);
   position: absolute;
   z-index: 1;
+  transform: translate(-100vw);
   }
   li{
   padding: 10%;
@@ -183,8 +183,8 @@ label{
       width: 40vw;
       border-radius: 1vw;
     }
-    #nav2{
-      transform: translate(100vw);
+    #nav2{      
+      transform: translate(-100vw);
       width: 40vw;
       border-radius: 1vw;
     }

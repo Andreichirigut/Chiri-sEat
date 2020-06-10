@@ -67,21 +67,22 @@
 			$('#ham2').click(function () {
 				if ($(window).width() < 700) {
 					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=150vw' });
+						$('#nav2').animate({ 'left': '+=160vw' });
 
 						desplegado = true;
 					} else {
-						$('#nav2').animate({ 'left': '+=150vw' });
+						$('#nav2').animate({ 'left': '-=260vw' });
 
 						desplegado = false;
-					}
+					}	
+					
 				}else if($(window).width() < 1000){
 					if (desplegado == false) {
-						$('#nav2').animate({ 'left': '-=100vw' });
+						$('#nav2').animate({ 'left': '+=160vw' });
 
 						desplegado = true;
 					} else {
-						$('#nav2').animate({ 'left': '+=100vw' });
+						$('#nav2').animate({ 'left': '-=260vw' });
 
 						desplegado = false;
 					}

@@ -181,6 +181,9 @@ nav{
     75% {margin-left: -300%;}
     100% {margin-left: -300%;}
   }
+  .avisos{
+    text-align: center;
+  }
   @media all and (min-width: 700px) {
     nav{
       transform: translate(-50vw);

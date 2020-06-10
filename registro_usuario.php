@@ -1,4 +1,5 @@
 <?php
+require "login_restful/conexion_bd.php";
 function consumir_servicio_REST($url,$metodo,$datos=null)
 {
        
@@ -19,43 +20,7 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 
 $ruta="http://localhost/Proyectos/ChirisEat/login_restful/";
 
-if(isset($_POST["btnRegistro"])){
-   
-    
-    	if($_POST["usuario"]=="")
-           $errorUsuario=" * Campo Vacío * "; 
-    
-    	if($_POST["clave1"]=="")
-			$errorClave1=" * Campo Vacío * ";
 
-		if($_POST["clave2"]=="")
-			$errorClave2=" * Campo Vacío * ";	
-			
-		if($_POST["email"]=="")
-            $errorEmail=" * Campo Vacío * ";
-	
-		if($_POST["clave1"]!=$_POST["clave2"]){
-			$errorClave=" * La clave no coincide * ";
-		}	
-
-	if(!isset($errorUsuario) && !isset($errorClave1) && !isset($errorClave2) && !isset($errorEmail) && !isset($errorClave)){
-
-		
-
-			$datos_usuario["usuario"]=$_POST["usuario"];
-			$datos_usuario["clave"]=$_POST["clave1"];
-			$datos_usuario["email"]=$_POST["email"];
-			$datos_usuario["tipo"]=$_POST["tipo"];
-			$obj=consumir_servicio_REST($ruta."insertarUsuario", "POST", $datos_usuario);
-			if(isset($obj->mensaje_error)){
-				die($obj->mensaje_error);
-			}else{
-				header("Location: index.php");
-				exit;	
-			}
-       
-	}
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -134,11 +99,7 @@ if(isset($_POST["btnRegistro"])){
 			<li><a href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
-		<div class="slider">
-			<div><img src="img/slider.jpg"></img></div>
-			<div><img src="img/slider2.jpg"></img></div>
-			<div><img src="img/slider3.jpg"></img></div>
-  		</div>
+		
 
 		<div id="login">
 			<h1>Registrarse</h1>
@@ -189,7 +150,7 @@ if(isset($_POST["btnRegistro"])){
 
 				<label for="tipo">Tipo:</label>
 				<select id="tipo" name="tipo">
-					<option value="normal">Normal</option>
+					<option value="usuario" selected>Normal</option>
 					<option value="restaurante">Restaurante</option>
 				</select>
 							
@@ -200,6 +161,59 @@ if(isset($_POST["btnRegistro"])){
 			<button type="submit" name="btnInicarSesion" id="botonReg" formaction="login.php">Iniciar Sesion</button>
 		</div>
 		</form>
+
+		<?php
+
+			if(isset($_POST["btnRegistro"])){
+
+
+				if($_POST["usuario"]=="")
+				$errorUsuario=" * Campo Vacío * "; 
+
+				if($_POST["clave1"]=="")
+					$errorClave1=" * Campo Vacío * ";
+
+				if($_POST["clave2"]=="")
+					$errorClave2=" * Campo Vacío * ";	
+					
+				if($_POST["email"]=="")
+					$errorEmail=" * Campo Vacío * ";
+
+				if($_POST["clave1"]!=$_POST["clave2"]){
+					$errorClave=" * La clave no coincide * ";
+				}	
+
+
+
+				if(!isset($errorUsuario) && !isset($errorClave1) && !isset($errorClave2) && !isset($errorEmail) && !isset($errorClave)){
+					$con=conectar();
+					$consulta = "select usuario from usuarios where usuario='".$_POST["usuario"]."'";
+					$resultado=mysqli_query($con, $consulta);
+
+					if(mysqli_num_rows($resultado)>0){
+						echo "<h2 class='avisos'>El nombre de usuario ya esta registrado</h2>";
+					}else{
+						$datos_usuario["usuario"]=$_POST["usuario"];
+						$datos_usuario["clave"]=$_POST["clave1"];
+						$datos_usuario["email"]=$_POST["email"];
+						$datos_usuario["tipo"]=$_POST["tipo"];
+						$obj=consumir_servicio_REST($ruta."insertarUsuario", "POST", $datos_usuario);
+						if(isset($obj->mensaje_error)){
+							die($obj->mensaje_error);
+						}else{
+							header("Location: index.php");
+							exit;	
+						}
+					}
+					
+					
+						
+					
+						
+				
+				}
+			}
+?>
 
 		</div>
 
