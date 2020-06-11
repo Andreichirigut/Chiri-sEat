@@ -110,7 +110,7 @@ if(isset($_POST["btPlato"])){
 			<li><a href="login.php"><i class="fas fa-user"></i><span> Iniciar sesión</span></a></li>
 			<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
 			<li><a href="restaurantesSinSesion.php"><i class="fas fa-utensils"></i><span> Restaurantes</span></a>
-			<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
+			<li><a href="top.php"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 		</nav>
 
 		<div class="slider">

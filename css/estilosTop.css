@@ -22,15 +22,7 @@
   margin-left: 1vw;
 }
 
-h3{
-  width: 100%;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
-}
-#comentario{
-  padding: 1vw;
-  width: 100%;
-}
+
 label{
   cursor:pointer;
 }
@@ -43,6 +35,7 @@ nav{
   width: 50vw;
   transform: translate(-50vw);
   position: absolute;
+  z-index: 1;
   }
   li{
   padding: 10%;
@@ -56,29 +49,47 @@ nav{
   }
 
 
-  section h1{
-    text-align: center;
-    width: 100%;
-    margin-bottom: 3%;
+  main{
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
   
 
   section{
-    padding: 3%;
+    padding:3%;
     background-color: white;
+    margin-bottom:3%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    display: flex;
-    margin: 5%;
+    width: 100%;
+
   }
 
+  section #text p{
+    display: none;
+  }
+
+  section #img{
+    width: 100%;
+    order:1;
+  }
   img{
     width: 100%;
-    margin-bottom: 3%;
     border: 1px solid black;
   }
-  
+  section #text{
+    order:0;
+    margin-bottom:3%;
+    text-align:center;
+    width:100%;
+  }
+  main{
+    width: 80%;
+    margin-left: 8%;
+  }
 
   body{
     background-color: #800040;
@@ -91,8 +102,16 @@ nav{
     cursor: pointer;
   }
 
-  #receta{
-    margin-top: 3%;
+ 
+  nav button{
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 4vw;
+  }
+  
+  .bx-wrapper{
+    color: #800040;
   }
 
   footer{
@@ -124,28 +143,6 @@ nav{
   #footer2 p:hover{
     cursor: pointer;
   } 
-
-  #usuario{
-    text-align: center;
-    width: 100%;
-    border-bottom: 1px solid black;
-  }
-  #comentar{
-    border: 3px solid #800040;
-    width: 50%;
-    text-align: center;
-    margin-bottom: 1vw;
-    margin-left: 25%;
-  }
-  textarea{
-    display: none;
-    font-family: 'Arial', sans-serif;
-    font-size: 1vw;
-  }
-  #continuar{
-    border: 3px solid #800040;
-    display: none;
-  }
   .slider{
     animation: cambio 10s infinite alternate linear;
   }
@@ -162,21 +159,8 @@ nav{
     75% {margin-left: -300%;}
     100% {margin-left: -300%;}
   }
-
   h4{
-    text-align: center;
-    width: 100%;
-  }
-  #formComent{
-    width: 100%;
-  }
-  #formComent textarea{
-    width: 100%;
-  } 
-  #votar{
-    width: 10vw;
-    font-size: 3vw;
-    margin-left: 21vw;
+    margin-bottom: 2vw;
   }
   @media all and (min-width: 700px) {
     nav{
@@ -193,27 +177,29 @@ nav{
     #head label span{
       font-size: 4vw;
     }
-    section{
-      flex-direction: row;
-      flex-wrap: wrap;
+    section #text p{
+      display: inline;
     }
-    
+    section #img{
+      width: 50%;
+      order:1;
+    }
+    section #text{
+      width: 50%;
+      order:1;
+    }
     img{
       width: 100%;
       border-radius: 1vw;
     }
-    #foto{
-      width: 45%;
-    }
-    #descripcion{
-      align-self: center;
-      width: 50%;
-      margin-left: 3%;
-    }
     h2{
       margin-bottom: 2vw;
     }
+    nav button{
+      font-size: 3vw;
+    }
   }
+
   @media all and (min-width: 1000px) {
     #head{
       height: 5vw;
@@ -235,23 +221,33 @@ nav{
     label{
       display: none;
     }
-    #foto{
-      width: 45%;
-    }
-    #descripcion{
-      height: 5vw;
-    }
-    footer{
-      margin-top: 5vw;
+    main{
       flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 0;
     }
-    #footer1 h1{
-      margin-bottom: 1vw;
+    section{
+      width: 40%;
+      margin-left: 3%;
+      margin-top: 3%;
+      margin-bottom: 0%;
     }
-    #footer1{
-      width: 50%;
-    }
-    #footer2{
-      width: 50%;
-    }
+     #img{
+       align-self: center;
+     }
+     footer{
+       margin-top: 5vw;
+       flex-direction: row;
+     }
+     #footer1 h1{
+       margin-bottom: 1vw;
+     }
+     #footer1{
+       width: 50%;
+     }
+     #footer2{
+       width: 50%;
+     }
   }
+

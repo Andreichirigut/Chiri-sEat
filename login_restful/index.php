@@ -17,6 +17,9 @@ $app->contentType('application/json; charset=utf-8');
 $app->get('/platos', function () {
 	echo json_encode(obtener_platos(), JSON_FORCE_OBJECT);
 });
+$app->get('/platosTop', function () {
+	echo json_encode(obtener_platosTop(), JSON_FORCE_OBJECT);
+});
 $app->get('/platosCorespondientes/:valor', function ($valor) {
 	echo json_encode(obtener_platosRestaurantes($valor), JSON_FORCE_OBJECT);
 });

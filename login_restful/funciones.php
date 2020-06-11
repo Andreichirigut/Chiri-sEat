@@ -24,6 +24,30 @@
         }
     }
 
+    function obtener_platosTop(){
+        $con=conectar();
+        if(!$con){
+            return array("mensaje_error"=>"Imposible conectar. Error ".mysqli_connect_errno());
+        }else{
+            mysqli_set_charset($con, "utf8");
+            $consulta="select * from platos ORDER BY votos desc";
+            $resultado=mysqli_query($con, $consulta);
+            if(!$resultado){
+                $mensaje="Imposible realizar la consulta. Error ".mysqli_errno($con);
+                mysqli_close($con);
+                return array("mensaje_error"=>$mensaje);
+            }else{
+                $platos=Array();
+                while($fila=mysqli_fetch_assoc($resultado)){
+                    $platos[]=$fila;
+                }
+                mysqli_free_result($resultado);
+                mysqli_close($con);
+                return array("platos"=>$platos);
+            }
+        }
+    }
+
     function obtener_platosRestaurantes($valor){
         $con=conectar();
         if(!$con){

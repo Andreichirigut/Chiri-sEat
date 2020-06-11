@@ -106,7 +106,7 @@ function consumir_servicio_REST($url,$metodo,$datos=null)
 			<nav>
 				<li><a id="login.php" href="login.php"><i class="fas fa-user"></i>Iniciar Sesion</a>
 				<li><a id="comunidad" href="#"><i class="fas fa-users"></i><span> Comunidad</span></a>
-				<li><a href="index.php"><i class="fas fa-user"></i><span> Inicio</span></a>
+				<li><a href="index.php"><i class="fas fa-home"></i><span> Inicio</span></a>
 				<li><a id="comunidad" href="#"><i class="fas fa-star"></i><span> Lo mas Top</span></a>
 			</nav>
 		
